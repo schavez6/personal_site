@@ -4,7 +4,9 @@ title: "About Me"
 
 - __Name:__ Sam Chavez
 - __Ocupation:__ PhD Student at University of Oregon
-- __Interests:__ Self, Decision-Making, Adolescence, Neuroimaging Methods, Longitudinal Analysis, Representativeness in Neuroimaging, Ruling the World
+- __Interests:__ Self, Decision-Making, Adolescence, Neuroimaging Methods, 
+                 Longitudinal Analysis, Representativeness in Neuroimaging, 
+                 Ruling the World
 
 Here is a super awesome (and accurate) gif created with frinkiac.com. 
 

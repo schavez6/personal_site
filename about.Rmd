@@ -2,4 +2,10 @@
 title: "About Me"
 ---
 
-Why I am awesome. 
+- __Name:__ Sam Chavez
+- __Ocupation:__ "Graduate Student"
+- __Hobbies:__ Learning software development instead of studying for exams. 
+
+Here is a super awesome (and accurate) gif created with frinkiac.com. 
+
+![](homer_webpage.gif)

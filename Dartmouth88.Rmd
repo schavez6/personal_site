@@ -1,0 +1,16 @@
+---
+title: "Dartmouth88"
+---
+
+
+![](Anger88.jpg) <br>
+
+![](Disgust88.jpg) <br>
+
+![](Fear88.jpg) <br>
+
+![](Happy88.jpg) <br>
+
+![](Sad88.jpg) <br>
+
+![](Surprise88.jpg) <br>

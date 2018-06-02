@@ -11,7 +11,7 @@
 
 
 
-<title>About Me</title>
+<title>AliStim</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -199,21 +199,36 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">About Me</h1>
+<h1 class="title toc-ignore">AliStim</h1>
 
 </div>
 
 
-<ul>
-<li><strong>Name:</strong> Sam Chavez</li>
-<li><strong>Ocupation:</strong> PhD Student at University of Oregon</li>
-<li><strong>Interests:</strong> Self, Decision-Making, Adolescence, Neuroimaging Methods, <br> Longitudinal Analysis, Representativeness in Neuroimaging, <br> Ruling the World</li>
-</ul>
-<p>Here is a super awesome (and accurate) gif created with frinkiac.com.</p>
-<div class="figure">
-<img src="homer_webpage.gif" />
-
-</div>
+<SCRIPT>
+function passWord() {
+var testV = 1;
+var pass1 = prompt('Please Enter Your Password',' ');
+while (testV < 3) {
+if (!pass1) 
+history.go(-1);
+if (pass1.toLowerCase() == "see my faces") {
+window.open('Dartmouth88.html');
+break;
+} 
+testV+=1;
+var pass1 = 
+prompt('Access Denied - Password Incorrect, Please Try Again.','Password');
+}
+if (pass1.toLowerCase()!="password" & testV ==3) 
+history.go(-1);
+return " ";
+} 
+</SCRIPT>
+<CENTER>
+<FORM>
+<input type="button" value="Enter Protected Area" onClick="passWord()">
+</FORM>
+</CENTER>
 
 
 

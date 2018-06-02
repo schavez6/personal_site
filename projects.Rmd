@@ -12,6 +12,8 @@ here's some examples.
 - Includes ratings of valence, arousal, and categorization accuracy from independent raters.
 - Additional self-reported individual difference measures for each stimulus identity can be made available upon request.
 
+![](angry_sam.gif) &nbsp; ![](disgusted_sam.gif)
+
 ## [Statistical Plots](http://bl.ocks.org/nstrayer/37a503dd1db369a8f7e3ce21757e19ee)
 
 - Interactive plots of things

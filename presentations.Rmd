@@ -9,4 +9,6 @@ title: "Presentations from our Data Science Course"
 
 __You get the idea...__
 
+
+## [How to Make a Personal Website with Blogdown](rstudio-websites/tutorial.md)
 ## [Shiny App Tutorial](Shiny_Tutorial.html)

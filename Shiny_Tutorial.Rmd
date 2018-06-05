@@ -29,7 +29,7 @@ Step 3: After you've created an awesome, original shiny app IN ITS OWN FOLDER
 #install.packages('rsconnect')
 
 ##you should replace this with your own info from 
-#rsconnect::setAccountInfo(name='schavez', token='F5D08BF684CEB0BAC3081F84BEBE4411', secret='lybcBWWniZw+Q9kL78zum9dgGzFvYEiSaUGGjNnW')
+#rsconnect::setAccountInfo(name='schavez', token='a bunch of numbers and letters', secret='secret numbers and letters')
 library(rsconnect)
 
 #This step is for after you've made a shiny app
@@ -38,6 +38,19 @@ library(rsconnect)
 
 ```
 
+## The Structure of a Shiny App
 
+Shiny apps are contained in a single, integrated script called app.R
+This script has at least three components:
+- a user interface object (can be a call to a separate ui.R script)
+- a server function (can be a call to a separate server.R script)
+- a call to the shinyApp function
+- optional: extra stuff in your global environment (can be a call to a separate global.R script)
+
+
+
+## An Alternative Way to Create Your Custom Website...
+
+http://nickstrayer.me/RMarkdown_Sites_tutorial/
 
 

@@ -225,12 +225,20 @@ $(document).ready(function () {
 <pre class="r"><code>#install.packages(&#39;rsconnect&#39;)
 
 ##you should replace this with your own info from 
-#rsconnect::setAccountInfo(name=&#39;schavez&#39;, token=&#39;F5D08BF684CEB0BAC3081F84BEBE4411&#39;, secret=&#39;lybcBWWniZw+Q9kL78zum9dgGzFvYEiSaUGGjNnW&#39;)
+#rsconnect::setAccountInfo(name=&#39;schavez&#39;, token=&#39;a bunch of numbers and letters&#39;, secret=&#39;secret numbers and letters&#39;)
 library(rsconnect)
 
 #This step is for after you&#39;ve made a shiny app
 #setwd(&quot;~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/&quot;)
 #rsconnect::deployApp()</code></pre>
+</div>
+<div id="the-structure-of-a-shiny-app" class="section level2">
+<h2>The Structure of a Shiny App</h2>
+<p>Shiny apps are contained in a single, integrated script called app.R This script has at least three components: - a user interface object (can be a call to a separate ui.R script) - a server function (can be a call to a separate server.R script) - a call to the shinyApp function - optional: extra stuff in your global environment (can be a call to a separate global.R script)</p>
+</div>
+<div id="an-alternative-way-to-create-your-custom-website" class="section level2">
+<h2>An Alternative Way to Create Your Custom Website…</h2>
+<p><a href="http://nickstrayer.me/RMarkdown_Sites_tutorial/" class="uri">http://nickstrayer.me/RMarkdown_Sites_tutorial/</a></p>
 </div>
 
 

@@ -13,7 +13,6 @@ Here are some project's I've been working on.  Click the links to check them out
 
 ![](pics/angry_sam.gif) &nbsp; ![](pics/disgusted_sam.gif)
 
-## [Awesome Shiny App]()
+## [Awesomeness with ggplot2](graphics.html)
 
-- Here's an app I made based on the Text-Processing Hack from Week 6. 
-- If you're feeling fancy when you're working on this week's hack, make your own!
+- Because, when you spend days perfecting a plot for class, it's nice if someone else sees it...

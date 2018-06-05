@@ -2,7 +2,7 @@
 title: "Projects"
 ---
 
-Here are some project's I've been working on.  Click the links to check them out!
+Here are some projects I've been working on.  Click the links to check them out!
 
 ## [AliStim Faces](AliStim.html)
 

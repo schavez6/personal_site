@@ -1,6 +1,6 @@
 ---
 title: "Shiny Tutorial"
-author: "Sam Chavez"
+author: "Dani Cosme & Sam Chavez"
 date: "June 7, 2018"
 output: html_document
 ---

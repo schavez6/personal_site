@@ -9,6 +9,8 @@ navbar:
       href: about.html
     - text: "Projects"
       href: projects.html
+    - text: "Street Cred"
+      href: HomerResume.pdf
 output:
   html_document:
     theme: flatly

@@ -2,7 +2,7 @@
 title: "Here's a Home for all your Awesome R Graphics"
 ---
 
-__Check out my sweet political party wordle's from the Week 6 MiniHack!__
+__Check out my sweet political party wordles from the Text Processing MiniHack!__
 
 ![](pics/republican_wordle.png) ![](pics/democrat_wordle.png)
 

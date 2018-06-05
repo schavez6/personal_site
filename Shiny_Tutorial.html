@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Sam Chavez" />
 
 
-<title>Here’s a Home for all your Awesome R Graphics</title>
+<title>Shiny Tutorial</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -208,16 +209,29 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Here’s a Home for all your Awesome R Graphics</h1>
+<h1 class="title toc-ignore">Shiny Tutorial</h1>
+<h4 class="author"><em>Sam Chavez</em></h4>
+<h4 class="date"><em>June 7, 2018</em></h4>
 
 </div>
 
 
-<p><strong>Check out my sweet political party wordles from the Text Processing MiniHack!</strong></p>
-<p><img src="pics/republican_wordle.png" /> <img src="pics/democrat_wordle.png" /></p>
-<p><strong>Look at how cool this plot is!</strong></p>
-<p><span class="math display">\[Y = \alpha \cdot \sin(X), \alpha = 0,0.1,0.2,...,3\]</span></p>
-<p><img src="graphics_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="first-we-want-to-make-sure-we-can-share-our-shiny-app-with-the-world." class="section level2">
+<h2>First, we want to make sure we can share our shiny app with the world.</h2>
+<p>Step 1: Create an account on shinyapps.io (<a href="https://www.shinyapps.io/admin/#/signup" class="uri">https://www.shinyapps.io/admin/#/signup</a>) - Create an account name and then hit enter/return.</p>
+<p>Step 2: Configure your account.<br />
+- Install rsconnect package in R - Click the “show secret” button in step 2 of shinyapps.io - Click the “copy to clipboard” button in step 2 of shinyapps.io - Copy the info in the popup and paste it into R &amp; run - Load rsconnect library</p>
+<p>Step 3: After you’ve created an awesome, original shiny app IN ITS OWN FOLDER - Set your working directory to your shiny app folder - Deploy your shiny app with rsconnect::deployApp()</p>
+<pre class="r"><code>#install.packages(&#39;rsconnect&#39;)
+
+##you should replace this with your own info from 
+#rsconnect::setAccountInfo(name=&#39;schavez&#39;, token=&#39;F5D08BF684CEB0BAC3081F84BEBE4411&#39;, secret=&#39;lybcBWWniZw+Q9kL78zum9dgGzFvYEiSaUGGjNnW&#39;)
+library(rsconnect)
+
+#This step is for after you&#39;ve made a shiny app
+#setwd(&quot;~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/&quot;)
+#rsconnect::deployApp()</code></pre>
+</div>
 
 
 

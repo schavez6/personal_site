@@ -1,21 +1,24 @@
-name: "Sams-Website"
-output_dir: "."
+name: Sams-Website
+output_dir: .
 navbar:
-  title: "Sam's Silly Website"
+  title: Sam's Silly Website
   left:
-    - text: "Home"
-      href: index.html
-    - text: "About Me"
-      href: about.html
-    - text: "Projects"
-      href: projects.html
-    - text: "Street Cred"
-      href: HomerResume.pdf
-    - text: "Resources"
-      href: presentations.html
-    - text: "Shiny"
-      href: shiny.html
+  - text: Home
+    href: index.html
+  - text: About Me
+    href: about.html
+  - text: Projects
+    href: projects.html
+  - text: Street Cred
+    href: HomerResume.pdf
+  - text: Resources
+    href: presentations.html
+  - text: Shiny
+    href: shiny.html
 output:
   html_document:
     theme: flatly
     css: style.css
+    lib_dir: site_libs
+    self_contained: no
+

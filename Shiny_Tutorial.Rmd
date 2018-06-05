@@ -1,0 +1,43 @@
+---
+title: "Shiny Tutorial"
+author: "Sam Chavez"
+date: "June 7, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## First, we want to make sure we can share our shiny app with the world.
+
+Step 1: Create an account on shinyapps.io (https://www.shinyapps.io/admin/#/signup)
+  - Create an account name and then hit enter/return.
+  
+Step 2: Configure your account.  
+  - Install rsconnect package in R
+  - Click the "show secret" button in step 2 of shinyapps.io
+  - Click the "copy to clipboard" button in step 2 of shinyapps.io
+  - Copy the info in the popup and paste it into R & run
+  - Load rsconnect library
+  
+Step 3: After you've created an awesome, original shiny app IN ITS OWN FOLDER
+  - Set your working directory to your shiny app folder
+  - Deploy your shiny app with rsconnect::deployApp()
+
+```{r creating sharable shiny apps}
+#install.packages('rsconnect')
+
+##you should replace this with your own info from 
+#rsconnect::setAccountInfo(name='schavez', token='F5D08BF684CEB0BAC3081F84BEBE4411', secret='lybcBWWniZw+Q9kL78zum9dgGzFvYEiSaUGGjNnW')
+library(rsconnect)
+
+#This step is for after you've made a shiny app
+#setwd("~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/")
+#rsconnect::deployApp()
+
+```
+
+
+
+

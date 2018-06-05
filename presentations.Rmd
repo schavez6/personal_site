@@ -1,0 +1,10 @@
+---
+title: "Presentations from our Data Science Course"
+---
+
+
+## [Week 1](general_programming.html)
+## [Week 2](data_wrangling_in_R.html)
+## [Week 3](data_visualization_final.html)
+
+__You get the idea...__

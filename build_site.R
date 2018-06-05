@@ -9,3 +9,4 @@ setwd("~/UO/Spring 2018/Data Science/personal_site")
 # Make sure it looks the way you intended after each change.
 # If it looks awesome, push changes to github.
 rmarkdown::render_site()
+

@@ -32,4 +32,3 @@ ggplot(results, aes(x = xs, y = ys, color = alpha)) +
   theme_bw() + 
   theme(legend.position="none")
 ```
-

@@ -11,6 +11,8 @@ navbar:
       href: projects.html
     - text: "Street Cred"
       href: HomerResume.pdf
+    - text: "Resources"
+      href: presentations.html
 output:
   html_document:
     theme: flatly

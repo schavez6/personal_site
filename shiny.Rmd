@@ -4,5 +4,7 @@ Title: My Very Own Shiny App
 
 __You can embed shiny apps in your new website!__
 
+![](pics/nbc_shiny.gif)
+
 
 <iframe src="https://schavez.shinyapps.io/shinytest/" style="border: none; width: 700px; height: 500px"></iframe>

@@ -2,8 +2,7 @@
 title: "Projects"
 ---
 
-Sometimes I like to do projects and then post them on the internet for the whole world to benefit!
-here's some examples. 
+Here are some project's I've been working on.  Click the links to check them out!
 
 ## [AliStim Faces](AliStim.html)
 
@@ -12,9 +11,9 @@ here's some examples.
 - Includes ratings of valence, arousal, and categorization accuracy from independent raters.
 - Additional self-reported individual difference measures for each stimulus identity can be made available upon request.
 
-![](angry_sam.gif) &nbsp; ![](disgusted_sam.gif)
+![](pics/angry_sam.gif) &nbsp; ![](pics/disgusted_sam.gif)
 
-## [Statistical Plots](http://bl.ocks.org/nstrayer/37a503dd1db369a8f7e3ce21757e19ee)
+## [Awesome Shiny App]()
 
-- Interactive plots of things
-- I can code!
+- Here's an app I made based on the Text-Processing Hack from Week 6. 
+- If you're feeling fancy when you're working on this week's hack, make your own!

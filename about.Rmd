@@ -10,4 +10,4 @@ title: "About Me"
 
 Here is a super awesome (and accurate) gif created with frinkiac.com. 
 
-![](homer_webpage.gif)
+![](pics/homer_webpage.gif)

@@ -9,4 +9,8 @@ title: "Presentations from our Data Science Course"
 
 __You get the idea...__
 
-## [shiny test](shiny.html)
+__You can embed shiny apps in your new website!__
+
+![](pics/nbc_shiny.gif)
+
+## [shiny thing](<iframe src="https://shiny.rstudio.com/gallery/faithful.html" style="border: none; width: 440px; height: 500px"></iframe>)

@@ -1,0 +1,10 @@
+name: shinytest
+title:
+username:
+account: schavez
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 355559
+bundleId: 1413129
+url: https://schavez.shinyapps.io/shinytest/
+when: 1528224390.70288

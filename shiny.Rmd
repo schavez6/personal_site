@@ -1,5 +1,5 @@
 ---
-Title: Shiny App Demo
+Title: My Very Own Shiny App
 ---
 
 __You can embed shiny apps in your new website!__

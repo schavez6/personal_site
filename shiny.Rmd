@@ -1,0 +1,8 @@
+---
+Title: Shiny App Demo
+---
+
+__You can embed shiny apps in your new website!__
+
+
+<iframe src="https://shiny.rstudio.com/gallery/faithful.html" style="border: none; width: 440px; height: 500px"></iframe>

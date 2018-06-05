@@ -13,6 +13,8 @@ navbar:
       href: HomerResume.pdf
     - text: "Resources"
       href: presentations.html
+    - text: "Shiny"
+      href: shiny.html
 output:
   html_document:
     theme: flatly

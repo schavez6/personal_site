@@ -9,4 +9,6 @@ title: "Presentations from our Data Science Course"
 
 __You get the idea...__
 
+<br>
+
 ## [Shiny App Tutorial](Shiny_Tutorial.html)

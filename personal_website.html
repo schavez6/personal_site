@@ -593,6 +593,31 @@ blogdown<span class="op">::</span><span class="kw">serve_site</span>()</code></p
 <div id="password-protection" class="section level2">
 <h2>Password protection</h2>
 <p>Here’s a script to enable password protection on a portion of your website.</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;SCRIPT&gt;</span>
+<span class="kw">function</span> <span class="at">passWord</span>() <span class="op">{</span>
+<span class="kw">var</span> testV <span class="op">=</span> <span class="dv">1</span><span class="op">;</span>
+<span class="kw">var</span> pass1 <span class="op">=</span> <span class="at">prompt</span>(<span class="st">&#39;Please Enter Your Password&#39;</span><span class="op">,</span><span class="st">&#39; &#39;</span>)<span class="op">;</span>
+<span class="cf">while</span> (testV <span class="op">&lt;</span> <span class="dv">3</span>) <span class="op">{</span>
+<span class="cf">if</span> (<span class="op">!</span>pass1) 
+<span class="va">history</span>.<span class="at">go</span>(<span class="op">-</span><span class="dv">1</span>)<span class="op">;</span>
+<span class="cf">if</span> (<span class="va">pass1</span>.<span class="at">toLowerCase</span>() <span class="op">==</span> <span class="st">&quot;my super secret password&quot;</span>) <span class="op">{</span>
+<span class="va">window</span>.<span class="at">open</span>(<span class="st">&#39;EasterEgg.html&#39;</span>)<span class="op">;</span>
+<span class="cf">break</span><span class="op">;</span>
+<span class="op">}</span> 
+testV<span class="op">+=</span><span class="dv">1</span><span class="op">;</span>
+<span class="kw">var</span> pass1 <span class="op">=</span> 
+<span class="at">prompt</span>(<span class="st">&#39;Access Denied - Password Incorrect, Please Try Again.&#39;</span><span class="op">,</span><span class="st">&#39;Password&#39;</span>)<span class="op">;</span>
+<span class="op">}</span>
+<span class="cf">if</span> (<span class="va">pass1</span>.<span class="at">toLowerCase</span>()<span class="op">!=</span><span class="st">&quot;password&quot;</span> <span class="op">&amp;</span> testV <span class="op">==</span><span class="dv">3</span>) 
+<span class="va">history</span>.<span class="at">go</span>(<span class="op">-</span><span class="dv">1</span>)<span class="op">;</span>
+<span class="cf">return</span> <span class="st">&quot; &quot;</span><span class="op">;</span>
+<span class="op">}</span> 
+<span class="kw">&lt;/SCRIPT&gt;</span>
+<span class="kw">&lt;CENTER&gt;</span>
+<span class="kw">&lt;FORM&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;button&quot;</span><span class="ot"> value=</span><span class="st">&quot;Enter Protected Area&quot;</span><span class="ot"> onClick=</span><span class="st">&quot;passWord()&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/FORM&gt;</span>
+<span class="kw">&lt;/CENTER&gt;</span></code></pre></div>
 <SCRIPT>
 function passWord() {
 var testV = 1;
@@ -689,7 +714,8 @@ blogdown<span class="op">::</span><span class="kw">hugo_build</span>()</code></p
 <ol style="list-style-type: decimal">
 <li>Homepage with a brief description about your research interests</li>
 <li>A CV (either written in markdown or simply uploaded as a PDF)</li>
-<li>Your tutorial from this class</li>
+<li><p>A “Resources” tab with at least one of your ‘contributions to science’ from this class.</p>
+<p>Note: You decide how fancyyou want to be for #3. You may simply uploading your .html tutorial presentation. You can include the documentation and github link for the package you created last week. You can host a useful (or less useful) shiny app. You are limited only by your creativity (and your time).</p></li>
 </ol>
 <p>Change colors, futz with custom CSS, make a shiny app and link to it – feel free to add anything else you’d like!</p>
 <p>Go <f0><U+009F><U+008D><U+008C> <f0><U+009F><U+008D><U+008C></p>

@@ -311,7 +311,36 @@ Compare the files by opening the site in the browser and navigating to:
 # Advanced features
 ## Password protection
 
+
 Here's a script to enable password protection on a portion of your website.
+
+```{html, echo=T, eval=F}
+<SCRIPT>
+function passWord() {
+var testV = 1;
+var pass1 = prompt('Please Enter Your Password',' ');
+while (testV < 3) {
+if (!pass1) 
+history.go(-1);
+if (pass1.toLowerCase() == "my super secret password") {
+window.open('EasterEgg.html');
+break;
+} 
+testV+=1;
+var pass1 = 
+prompt('Access Denied - Password Incorrect, Please Try Again.','Password');
+}
+if (pass1.toLowerCase()!="password" & testV ==3) 
+history.go(-1);
+return " ";
+} 
+</SCRIPT>
+<CENTER>
+<FORM>
+<input type="button" value="Enter Protected Area" onClick="passWord()">
+</FORM>
+</CENTER>
+```
 
 <SCRIPT>
 function passWord() {
@@ -338,6 +367,7 @@ return " ";
 <input type="button" value="Enter Protected Area" onClick="passWord()">
 </FORM>
 </CENTER>
+
 ## Shiny apps
 
 # Explore the `hugo-academic` template
@@ -439,7 +469,9 @@ Here are the components you should include:
 
 1. Homepage with a brief description about your research interests 
 2. A CV (either written in markdown or simply uploaded as a PDF)
-3. Your tutorial from this class
+3. A "Resources" tab with at least one of your 'contributions to science' from this class.
+
+    Note: You decide how fancyyou want to be for #3.  You may simply uploading your .html tutorial presentation.  You can include the documentation and github link for the package you created last week.  You can host a useful (or less useful) shiny app. You are limited only by your creativity (and your time). 
 
 Change colors, futz with custom CSS, make a shiny app and link to it -- feel free to add anything else you'd like! 
 

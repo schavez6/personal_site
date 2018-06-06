@@ -160,8 +160,5 @@ shinyApp(ui, server)
 
 <iframe src="https://schavez.shinyapps.io/layout/" style="border: none; width: 700px; height: 500px"></iframe>
 
-## An Alternative Way to Create Your Custom Website...
-
-http://nickstrayer.me/RMarkdown_Sites_tutorial/
 
 

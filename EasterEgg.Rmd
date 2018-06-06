@@ -1,0 +1,8 @@
+---
+title: "Easter Egg"
+---
+
+
+You've unlocked this websit's hidden content!
+
+![](pics/easter_egg.jpg)

@@ -20,26 +20,50 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #0000ff; } /* Keyword */
+code > span.ch { color: #008080; } /* Char */
+code > span.st { color: #008080; } /* String */
+code > span.co { color: #008000; } /* Comment */
+code > span.ot { color: #ff4000; } /* Other */
+code > span.al { color: #ff0000; } /* Alert */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #008000; font-weight: bold; } /* Warning */
+code > span.cn { } /* Constant */
+code > span.sc { color: #008080; } /* SpecialChar */
+code > span.vs { color: #008080; } /* VerbatimString */
+code > span.ss { color: #008080; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #0000ff; } /* ControlFlow */
+code > span.op { } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ff4000; } /* Preprocessor */
+code > span.do { color: #008000; } /* Documentation */
+code > span.an { color: #008000; } /* Annotation */
+code > span.cv { color: #008000; } /* CommentVar */
+code > span.at { } /* Attribute */
+code > span.in { color: #008000; } /* Information */
+</style>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
-
 
 
 <style type="text/css">
@@ -165,6 +189,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -216,124 +335,143 @@ $(document).ready(function () {
 </div>
 
 
-<div id="first-we-want-to-make-sure-we-can-share-our-shiny-app-with-the-world." class="section level2">
-<h2>First, we want to make sure we can share our shiny app with the world.</h2>
+<div id="share-your-shiny-app" class="section level2">
+<h2>Share Your Shiny App</h2>
 <p>Step 1: Create an account on shinyapps.io (<a href="https://www.shinyapps.io/admin/#/signup" class="uri">https://www.shinyapps.io/admin/#/signup</a>) - Create an account name and then hit enter/return.</p>
 <p>Step 2: Configure your account.<br />
 - Install rsconnect package in R - Click the “show secret” button in step 2 of shinyapps.io - Click the “copy to clipboard” button in step 2 of shinyapps.io - Copy the info in the popup and paste it into R &amp; run - Load rsconnect library</p>
 <p>Step 3: After you’ve created an awesome, original shiny app IN ITS OWN FOLDER - Set your working directory to your shiny app folder - Deploy your shiny app with rsconnect::deployApp()</p>
-<pre class="r"><code>#install.packages(&#39;rsconnect&#39;)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&#39;rsconnect&#39;)</span>
 
 ##you should replace this with your own info from 
-#rsconnect::setAccountInfo(name=&#39;schavez&#39;, token=&#39;a bunch of numbers and letters&#39;, secret=&#39;secret numbers and letters&#39;)
-library(rsconnect)
+<span class="co">#rsconnect::setAccountInfo(name=&#39;schavez&#39;, token=&#39;a bunch of numbers and letters&#39;, secret=&#39;secret numbers and letters&#39;)</span>
+<span class="kw">library</span>(rsconnect)
 
-#Last Step: This step is for after you&#39;ve made a shiny app
-#setwd(&quot;~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/&quot;)
-#rsconnect::deployApp()</code></pre>
+<span class="co">#Last Step: This step is for after you&#39;ve made a shiny app</span>
+<span class="co">#setwd(&quot;~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/&quot;)</span>
+<span class="co">#rsconnect::deployApp()</span></code></pre></div>
 </div>
 <div id="the-structure-of-a-shiny-app" class="section level2">
 <h2>The Structure of a Shiny App</h2>
-<p>Shiny apps are contained in a single, integrated script called app.R This script has at least three components: - a user interface object (can be a call to a separate ui.R script) - a server function (can be a call to a separate server.R script) - a call to the shinyApp function - optional: extra stuff in your global environment (can be a call to a separate global.R script) - If you want to host your shiny app, save this script as app.R and put it in it’s own folder. The name for that folder will be the name of your shiny app.</p>
-<pre class="r"><code># If you choose to host this app online, you&#39;ll need to copy everything in this code chunk and save it to app.R in it&#39;s own folder.  Then, set your working directory to the saved folder.  Finally, use the command &#39;rsconnect::deployApp()&#39; to host your app.
+<p>Shiny apps are contained in a single, integrated script called app.R.</p>
+<p>This script has at least three components:</p>
+<ul>
+<li>a user interface object (can be a call to a separate ui.R script)</li>
+<li>a server function (can be a call to a separate server.R script)</li>
+<li>a call to the shinyApp function</li>
+<li>optional: extra stuff in your global environment (can be a call to a separate global.R script)</li>
+<li>If you want to host your shiny app, save this script as app.R and put it in it’s own folder. The name for that folder will be the name of your shiny app.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># If you choose to host this app online, you&#39;ll need to copy everything in this code chunk and save it to app.R in it&#39;s own folder.  Then, set your working directory to the saved folder.  Finally, use the command &#39;rsconnect::deployApp()&#39; to host your app.</span>
 
-# Here&#39;s a user interface (ui) component
-library(shiny)
+<span class="co"># Here&#39;s a user interface (ui) component</span>
+<span class="kw">library</span>(shiny)
 
-# Define UI for app that draws a histogram ----
-ui &lt;- fluidPage(
+<span class="co"># Define UI for app that draws a histogram ----</span>
+ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
 
-  # App title ----
-  titlePanel(&quot;Hello Shiny!&quot;),
+  <span class="co"># App title ----</span>
+  <span class="kw">titlePanel</span>(<span class="st">&quot;Hello Shiny!&quot;</span>),
 
-  # Sidebar layout with input and output definitions ----
-  sidebarLayout(
+  <span class="co"># Sidebar layout with input and output definitions ----</span>
+  <span class="kw">sidebarLayout</span>(
 
-    # Sidebar panel for inputs ----
-    sidebarPanel(
+    <span class="co"># Sidebar panel for inputs ----</span>
+    <span class="kw">sidebarPanel</span>(
 
-      # Input: Slider for the number of bins ----
-      sliderInput(inputId = &quot;bins&quot;,
-                  label = &quot;Number of bins:&quot;,
-                  min = 1,
-                  max = 50,
-                  value = 30)
+      <span class="co"># Input: Slider for the number of bins ----</span>
+      <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;bins&quot;</span>,
+                  <span class="dt">label =</span> <span class="st">&quot;Number of bins:&quot;</span>,
+                  <span class="dt">min =</span> <span class="dv">1</span>,
+                  <span class="dt">max =</span> <span class="dv">50</span>,
+                  <span class="dt">value =</span> <span class="dv">30</span>)
 
     ),
 
-    # Main panel for displaying outputs ----
-    mainPanel(
+    <span class="co"># Main panel for displaying outputs ----</span>
+    <span class="kw">mainPanel</span>(
 
-      # Output: Histogram ----
-      plotOutput(outputId = &quot;distPlot&quot;)
+      <span class="co"># Output: Histogram ----</span>
+      <span class="kw">plotOutput</span>(<span class="dt">outputId =</span> <span class="st">&quot;distPlot&quot;</span>)
 
     )
   )
 )
 
-# Here&#39;s a server component
+<span class="co"># Here&#39;s a server component</span>
 
-# Define server logic required to draw a histogram ----
-server &lt;- function(input, output) {
+<span class="co"># Define server logic required to draw a histogram ----</span>
+server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
 
-  # Histogram of the Old Faithful Geyser Data ----
-  # with requested number of bins
-  # This expression that generates a histogram is wrapped in a call
-  # to renderPlot to indicate that:
-  #
-  # 1. It is &quot;reactive&quot; and therefore should be automatically
-  #    re-executed when inputs (input$bins) change
-  # 2. Its output type is a plot
-  output$distPlot &lt;- renderPlot({
+  <span class="co"># Histogram of the Old Faithful Geyser Data ----</span>
+  <span class="co"># with requested number of bins</span>
+  <span class="co"># This expression that generates a histogram is wrapped in a call</span>
+  <span class="co"># to renderPlot to indicate that:</span>
+  <span class="co">#</span>
+  <span class="co"># 1. It is &quot;reactive&quot; and therefore should be automatically</span>
+  <span class="co">#    re-executed when inputs (input$bins) change</span>
+  <span class="co"># 2. Its output type is a plot</span>
+  output<span class="op">$</span>distPlot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
 
-    x    &lt;- faithful$waiting
-    bins &lt;- seq(min(x), max(x), length.out = input$bins + 1)
+    x    &lt;-<span class="st"> </span>faithful<span class="op">$</span>waiting
+    bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="dt">length.out =</span> input<span class="op">$</span>bins <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)
 
-    hist(x, breaks = bins, col = &quot;#75AADB&quot;, border = &quot;white&quot;,
-         xlab = &quot;Waiting time to next eruption (in mins)&quot;,
-         main = &quot;Histogram of waiting times&quot;)
+    <span class="kw">hist</span>(x, <span class="dt">breaks =</span> bins, <span class="dt">col =</span> <span class="st">&quot;#75AADB&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>,
+         <span class="dt">xlab =</span> <span class="st">&quot;Waiting time to next eruption (in mins)&quot;</span>,
+         <span class="dt">main =</span> <span class="st">&quot;Histogram of waiting times&quot;</span>)
 
     })
 
 }
 
-# When you&#39;ve made both components, you&#39;re ready to call shinyApp
+<span class="co"># When you&#39;ve made both components, you&#39;re ready to call shinyApp</span>
 
-shinyApp(ui = ui, server = server)</code></pre>
+<span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</code></pre></div>
 </div>
 <div id="layout" class="section level2">
 <h2>Layout</h2>
-<p>The layout of a shiny app is specified within the user interface with the function fluidPage() using the panel options. - Specify a title with titlePanel(“my title”) - Parition your layout into sidebar &amp; main panels - Change the position of a panel - You can use some HTML5 tags without the &lt;&gt; brackets too - Use ‘align’ to change text justification - Use p() to create paragraphs And so much more…</p>
-<pre class="r"><code>ui &lt;- fluidPage(
-  titlePanel(em(&quot;my italicized title&quot;, align = &quot;center&quot;)),
+<p>The layout of a shiny app is specified within the user interface with the function fluidPage() using the panel options.</p>
+<ul>
+<li>Specify a title with titlePanel(“my title”)</li>
+<li>Parition your layout into sidebar &amp; main panels</li>
+<li>Change the position of a panel</li>
+<li>You can use some HTML5 tags without the &lt;&gt; brackets too</li>
+<li>Use ‘align’ to change text justification</li>
+<li>Use p() to create paragraphs</li>
+</ul>
+<p>And so much more…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+  <span class="kw">titlePanel</span>(<span class="kw">em</span>(<span class="st">&quot;my italicized title&quot;</span>, <span class="dt">align =</span> <span class="st">&quot;center&quot;</span>)),
   
-  sidebarLayout(position = &quot;left&quot;,
-                sidebarPanel(strong(&quot;my bold sidebar&quot;),
-                             img(src = &quot;https://www.thefarmersbank.net/wp-content/uploads/2018/04/2005-Penny-Uncirculated-Obverse.png&quot;, height = 100, width = 100)),
-                mainPanel(
-                  h1(&quot;most important output&quot;),
-                  br(),
-                  p(&quot;this is a paragraph that says nothing in particular.  it&#39;s just a bunch of sentences to illustrate a point about separating text.  watch, we&#39;re going to copy and paste it below as another paragraph.&quot;),
-                  p(&quot;this is a paragraph that says nothing in particular.  it&#39;s just a bunch of sentences to illustrate a point about separating text.&quot;),
-                  h2(&quot;less important blue output&quot;),
-                  h3(div(&quot;here&#39;s smaller text in blue&quot;, style = &quot;color:blue&quot;)),
-                  h4(p(&quot;here&#39;s a tiny text paragraph with just&quot;, span(&quot;a few orange words,&quot;, style = &quot;color:orange&quot;), &quot;if you&#39;re into that.&quot;))
+  <span class="kw">sidebarLayout</span>(<span class="dt">position =</span> <span class="st">&quot;left&quot;</span>,
+                <span class="kw">sidebarPanel</span>(<span class="kw">strong</span>(<span class="st">&quot;my bold sidebar&quot;</span>),
+                             <span class="kw">img</span>(<span class="dt">src =</span> <span class="st">&quot;https://www.thefarmersbank.net/wp-content/uploads/2018/04/2005-Penny-Uncirculated-Obverse.png&quot;</span>, <span class="dt">height =</span> <span class="dv">100</span>, <span class="dt">width =</span> <span class="dv">100</span>)),
+                <span class="kw">mainPanel</span>(
+                  <span class="kw">h1</span>(<span class="st">&quot;most important output&quot;</span>),
+                  <span class="kw">br</span>(),
+                  <span class="kw">p</span>(<span class="st">&quot;this is a paragraph that says nothing in particular.  it&#39;s just a bunch of sentences to illustrate a point about separating text.  watch, we&#39;re going to copy and paste it below as another paragraph.&quot;</span>),
+                  <span class="kw">p</span>(<span class="st">&quot;this is a paragraph that says nothing in particular.  it&#39;s just a bunch of sentences to illustrate a point about separating text.&quot;</span>),
+                  <span class="kw">h2</span>(<span class="st">&quot;less important blue output&quot;</span>),
+                  <span class="kw">h3</span>(<span class="kw">div</span>(<span class="st">&quot;here&#39;s smaller text in blue&quot;</span>, <span class="dt">style =</span> <span class="st">&quot;color:blue&quot;</span>)),
+                  <span class="kw">h4</span>(<span class="kw">p</span>(<span class="st">&quot;here&#39;s a tiny text paragraph with just&quot;</span>, <span class="kw">span</span>(<span class="st">&quot;a few orange words,&quot;</span>, <span class="dt">style =</span> <span class="st">&quot;color:orange&quot;</span>), <span class="st">&quot;if you&#39;re into that.&quot;</span>))
                 )
   )
 )
 
-# Let&#39;s see what we created
-# Uncomment the lines below and run this chunk only
+<span class="co"># Let&#39;s see what we created</span>
+<span class="co"># Uncomment the lines below and run this chunk only</span>
 
-server &lt;- function(input, output) {
+server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
 }
-shinyApp(ui, server)</code></pre>
+<span class="kw">shinyApp</span>(ui, server)</code></pre></div>
 <iframe src="https://schavez.shinyapps.io/layout/" style="border: none; width: 700px; height: 500px">
 </iframe>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 

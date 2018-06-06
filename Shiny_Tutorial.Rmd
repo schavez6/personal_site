@@ -2,14 +2,19 @@
 title: "Shiny Tutorial"
 author: "Dani Cosme & Sam Chavez"
 date: "June 7, 2018"
-output: html_document
+output: 
+  html_document:
+    highlight: haddock
+    theme: flatly
+    toc: yes
+    toc_float: yes
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## First, we want to make sure we can share our shiny app with the world.
+## Share Your Shiny App
 
 Step 1: Create an account on shinyapps.io (https://www.shinyapps.io/admin/#/signup)
   - Create an account name and then hit enter/return.
@@ -40,8 +45,10 @@ library(rsconnect)
 
 ## The Structure of a Shiny App
 
-Shiny apps are contained in a single, integrated script called app.R
+Shiny apps are contained in a single, integrated script called app.R.
+
 This script has at least three components:
+
 - a user interface object (can be a call to a separate ui.R script)
 - a server function (can be a call to a separate server.R script)
 - a call to the shinyApp function
@@ -121,12 +128,14 @@ shinyApp(ui = ui, server = server)
 ## Layout
 
 The layout of a shiny app is specified within the user interface with the function fluidPage() using the panel options.
+
  - Specify a title with titlePanel("my title")
  - Parition your layout into sidebar & main panels
  - Change the position of a panel
  - You can use some HTML5 tags without the <> brackets too
  - Use 'align' to change text justification
  - Use p() to create paragraphs
+ 
  And so much more...
  
 ```{r layout, eval=FALSE, include=TRUE}

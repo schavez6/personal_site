@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Dani Cosme &amp; Sam Chavez" />
+
+
+<title>Websites in RStudio</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #0000ff; } /* Keyword */
+code > span.ch { color: #008080; } /* Char */
+code > span.st { color: #008080; } /* String */
+code > span.co { color: #008000; } /* Comment */
+code > span.ot { color: #ff4000; } /* Other */
+code > span.al { color: #ff0000; } /* Alert */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #008000; font-weight: bold; } /* Warning */
+code > span.cn { } /* Constant */
+code > span.sc { color: #008080; } /* SpecialChar */
+code > span.vs { color: #008080; } /* VerbatimString */
+code > span.ss { color: #008080; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #0000ff; } /* ControlFlow */
+code > span.op { } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ff4000; } /* Preprocessor */
+code > span.do { color: #008000; } /* Documentation */
+code > span.an { color: #008000; } /* Annotation */
+code > span.cv { color: #008000; } /* CommentVar */
+code > span.at { } /* Attribute */
+code > span.in { color: #008000; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Sam's Silly Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About Me</a>
+</li>
+<li>
+  <a href="projects.html">Projects</a>
+</li>
+<li>
+  <a href="HomerResume.pdf">Street Cred</a>
+</li>
+<li>
+  <a href="presentations.html">Resources</a>
+</li>
+<li>
+  <a href="shiny.html">Shiny</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Websites in RStudio</h1>
+<h4 class="author"><em>Dani Cosme &amp; Sam Chavez</em></h4>
+<h4 class="date"><em>06-03-2018</em></h4>
+
+</div>
+
+
+<div id="overview-of-the-tutorial" class="section level3">
+<h3>Overview of the tutorial</h3>
+<ol style="list-style-type: decimal">
+<li>Background</li>
+<li>Learn the basics<br />
+</li>
+<li>Explore advanced features<br />
+</li>
+<li>Check out the <code>hugo-academic</code> theme</li>
+<li>Publish your website to GitHub</li>
+</ol>
+</div>
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p>Most of the information in this tutorial is taken from a few amazing resources on using the <strong>blogdown</strong> package to create static websites in RStudio using R Markdown:</p>
+<ul>
+<li><a href="https://bookdown.org/yihui/blogdown/"><em>blogdown: Creating Websites with R Markdown</em></a><br />
+</li>
+<li>Various presentations and posts by Alison Hill
+<ul>
+<li><a href="https://apreshill.github.io/data-vis-labs-2018/slides/06-slides_blogdown.html#1" class="uri">https://apreshill.github.io/data-vis-labs-2018/slides/06-slides_blogdown.html#1</a><br />
+</li>
+<li><a href="https://alison.rbind.io/slides/blogdown-workshop-slides" class="uri">https://alison.rbind.io/slides/blogdown-workshop-slides</a><br />
+</li>
+<li><a href="https://alison.rbind.io/post/up-and-running-with-blogdown/#build-your-site-in-rstudio" class="uri">https://alison.rbind.io/post/up-and-running-with-blogdown/#build-your-site-in-rstudio</a></li>
+</ul></li>
+</ul>
+<div id="why-use-rstudio-to-make-static-websites" class="section level2">
+<h2>Why use RStudio to make static websites?</h2>
+<ul>
+<li>It’s easy</li>
+<li>It’s free</li>
+<li>It’s a simple way to share your code and analyses</li>
+</ul>
+</div>
+<div id="what-is-blogdown" class="section level2">
+<h2>What is blogdown?</h2>
+<p><strong>blogdown</strong> is a package that leverages R Markdown and Hugo to create static websites.</p>
+</div>
+<div id="what-is-hugo" class="section level2">
+<h2>What is Hugo?</h2>
+<p>Hugo is a static website generator. Static websites are collections of HTML files and the external dependencies referenced within them. More on Hugo <a href="https://bookdown.org/yihui/blogdown/hugo.html">here</a>.</p>
+</div>
+</div>
+<div id="learn-the-basics" class="section level1">
+<h1>Learn the basics</h1>
+<div id="install-blogdown-and-hugo" class="section level2">
+<h2>Install blogdown and hugo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;blogdown&quot;</span>)
+<span class="kw">library</span>(blogdown)
+blogdown<span class="op">::</span><span class="kw">install_hugo</span>()</code></pre></div>
+</div>
+<div id="update-hugo-if-necessary" class="section level2">
+<h2>Update hugo if necessary</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">blogdown<span class="op">::</span><span class="kw">hugo_version</span>() 
+blogdown<span class="op">::</span><span class="kw">update_hugo</span>()</code></pre></div>
+</div>
+<div id="create-a-website-using-the-default-lithium-template" class="section level2">
+<h2>Create a website using the default lithium template</h2>
+<p>There are a number of ways to create a new website project. You can create it using the IDE by clicking <code>File &gt; New Project &gt; New Directory &gt; Website Using Blogdown</code> or by simply specifying the path to the new website as a argument in the <code>blogdown::new_site()</code> function. Make sure that you specify the new directory (e.g. the name of the folder you would like to create) in the path.</p>
+<p>Here we’ll create the website one level above our current working directory. The reason for doing this is that our current working directory is a git repository and if we try to publish this later, it will cause problems (it’s not straight forward to have a repo inside of a repo).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">blogdown<span class="op">::</span><span class="kw">new_site</span>(<span class="st">&quot;../default-site&quot;</span>)</code></pre></div>
+<p>You can also specify a theme when creating your new site. The default is the <a href="https://github.com/yihui/hugo-lithium">lithium theme</a>, but there are a variety of other <a href="https://themes.gohugo.io/">Hugo themes</a> available. We’ll use the <a href="https://github.com/gcushen/hugo-academic">hugo-academic</a> theme later in the tutorial.</p>
+<pre><code>blogdown::new_site(theme = &#39;yihui/hugo-lithium&#39;)
+blogdown::new_site(theme = &#39;devcows/hugo-universal-theme&#39;)
+blogdown::new_site(theme = &#39;gcushen/hugo-academic&#39;)</code></pre>
+</div>
+<div id="render-the-site" class="section level2">
+<h2>Render the site</h2>
+<p>Anytime you want to render the site, you can do so by either clicking <code>Addins &gt; Serve Site</code> or executing the <code>blogdown::serve_site()</code> function. This function should be executed from the site directory, so if you are not currently in that directory, make sure to change you current working directory to the site directory.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;../default-site/&quot;</span>)
+blogdown<span class="op">::</span><span class="kw">serve_site</span>()</code></pre></div>
+</div>
+<div id="where-does-the-content-live" class="section level2">
+<h2>Where does the content live?</h2>
+<p>Take a look at what’s in the site directory.</p>
+<p>Key components:<br />
++ <code>config.toml</code> = configuration file that the user edits to customize their site<br />
++ <code>/content/</code> = where the actual content (e.g. pages, posts live)<br />
++ <code>/public/</code> = the directory containing the website for online deployment<br />
++ <code>/layouts/</code> = where you’ll place code to override the original template design<br />
++ <code>/static/</code> = where content such as images and CSS code are stored<br />
++ <code>/theme/</code> = where the theme template is stored</p>
+</div>
+<div id="config.toml-file" class="section level2">
+<h2><code>config.toml</code> file</h2>
+<p>The configuration file is where global variables and settings are defined. More about configuration files and the variables specified within it <a href="http://gohugo.io/getting-started/configuration/">here</a>. More information on TOML syntax <a href="https://bookdown.org/yihui/blogdown/configuration.html#toml-syntax">here</a>.</p>
+<div id="edit-config.toml" class="section level3">
+<h3>Edit <code>config.toml</code></h3>
+<p>Change the site name</p>
+<pre><code>title = &quot;Dani Cosme, M.S.&quot;</code></pre>
+<p>Enable emojis</p>
+<pre><code>enableEmoji = true</code></pre>
+</div>
+<div id="navigation-bar" class="section level3">
+<h3>Navigation bar</h3>
+<p>More on menu management <a href="https://gohugo.io/variables/menus/">here</a>. <code>[[menu.main]]</code> = Pages and links in the menu bar</p>
+<ul>
+<li>Can be external links (e.g. Twitter page) or internal links (e.g. /posts/)<br />
+</li>
+<li>Default arrangement is alphabetical order<br />
+</li>
+<li>To manually specify the order, add <code>weight</code> as a field</li>
+</ul>
+<p>Add the following text to your <code>config.toml</code> page and see what happens:</p>
+<pre><code>[[menu.main]]
+    name = &quot;UO Data Science Club&quot;
+    url = &quot;https://github.com/uodatascience&quot;
+    weight = 1</code></pre>
+</div>
+</div>
+<div id="homepage" class="section level2">
+<h2>Homepage</h2>
+<p>Create a file called <code>index.html</code> in the <code>layouts/</code> directory.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">touch</span> ../default-site/layouts/index.html</code></pre></div>
+<p>Copy the following text into <code>layouts/index.html</code>. I borrowed this code from <a href="https://github.com/rladies-pdx/rladies-PDX/blob/master/layouts/index.html">Alison Hill’s awesome blogdown tutorial</a>, but you could write your own html code to create the layout for your homepage.</p>
+<pre><code>{{ partial &quot;header&quot; . }}
+
+&lt;div class=&quot;intro&quot;&gt;
+        &lt;div&gt;&lt;center&gt;&lt;img class=&quot;center-image&quot; src={{ .Site.Params.img }} width=&quot;20%&quot;/&gt;&lt;/center&gt;&lt;/div&gt;
+
+        &lt;h1&gt;&lt;center&gt;{{ markdownify .Title }}&lt;/center&gt;&lt;/h1&gt;
+        
+        &lt;h2&gt;&lt;center&gt;{{ markdownify .Site.Params.Description }}&lt;/center&gt;&lt;/h2&gt;
+
+&lt;/div&gt;
+
+
+{{ partial &quot;footer&quot; . }}</code></pre>
+<p>We referenced a field<code>.Site.Params.img</code>, but it currently doesn’t exist. Let’s add it to <code>config.toml</code> and also update the site description.</p>
+<pre><code>[params]
+    description = &quot;Welcome to my website!&lt;br&gt;Here is a bunch of text about me.&lt;br&gt;Yada yada yada.&quot;
+    img = &quot;https://avatars1.githubusercontent.com/u/11858670?s=460&amp;v=4&quot;</code></pre>
+<p>Since the posts are no longer on linked from the landing page, let’s add the <code>Posts</code> page to the navigation bar by adding it as a field in <code>config.toml</code>:</p>
+<pre><code>[[menu.main]]
+    name = &quot;Posts&quot;
+    url = &quot;/post/&quot;</code></pre>
+</div>
+<div id="about-page" class="section level2">
+<h2>About page</h2>
+<p>Open <code>/content/about.md</code> and check it out. Add the following text to the <code>about.md</code> file and look at the difference.</p>
+<pre><code>Because we enabled emojis in `config.toml`, we can use them here. I :heart: emojis!
+
+Posts are written in plain markdown. Here is some useful syntax. More on plain markdown in the default post [A Plain Markdown Post](../2016/12/30/a-plain-markdown-post/). There&#39;s also lots more information in the digital book [*blogdown: Creating Websites with R Markdown*](https://bookdown.org/yihui/blogdown/output-format.html).
+
+## h2 header
+### h3 header
+#### h4 header
+
+**bold**&lt;br&gt;
+*italics*&lt;br&gt;
+~~strikethrough~~
+
+Also check out [Cory&#39;s awesome markdown tutorial](https://github.com/uodatascience/markdown) for more markdown magic.
+
+Note: you can write in html.
+
+&lt;h4&gt; Embed a gif &lt;br&gt;
+&lt;img src=&quot;https://media.giphy.com/media/l0Nwvo3slpo6nS0PC/giphy.gif&quot; alt=&quot;neato&quot;&gt;
+
+&lt;h4&gt; Embed a calendar &lt;br&gt;
+&lt;iframe src=&quot;https://calendar.google.com/calendar/embed?src=beo4lsbjns0kqovh8nktjou8l4%40group.calendar.google.com&amp;ctz=America%2FLos_Angeles&quot; style=&quot;border: 0&quot; width=&quot;800&quot; height=&quot;600&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;</code></pre>
+</div>
+<div id="pages" class="section level2">
+<h2>Pages</h2>
+<p>Create a new page called <code>CV</code> in the content folder.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;../default-site/&quot;</span>)
+blogdown<span class="op">::</span><span class="kw">new_content</span>(<span class="st">&quot;content/cv&quot;</span>)</code></pre></div>
+<p>Copy the following text into the document:</p>
+<pre><code>---
+title: &#39;&#39;
+date: &#39;2018-06-03 23:25:08 GMT&#39;
+---
+
+&lt;div style=&quot;text-align: right&quot;&gt;&lt;h1&gt;DANI COSME&lt;/div&gt;
+&lt;div style=&quot;text-align: right&quot;&gt;dcosme@uoregon.edu&lt;/div&gt;
+&lt;div style=&quot;text-align: right&quot;&gt;&lt;a href=&quot;http://dcosme.github.io&quot;&gt;dcosme.github.io&lt;/a&gt;&lt;/div&gt;
+
+### EDUCATION //
+**Doctoral Candidate, Psychology, 2015-present**&lt;br&gt;
+University of Oregon (Eugene, OR)&lt;br&gt;
+Advisors: Drs. Jennifer Pfeifer &amp; Elliot Berkman
+
+### PUBLICATIONS //
+**Cosme, D.** (2018) Brilliant article. *Science*, 1(1), 1-5.&lt;br&gt;
+[DOI](http://doi.org/) [OSF](http://osf.io/) [NEUROVAULT](http://neurovault.org/)</code></pre>
+<p>Add the page to the navigation bar by adding the following text to <code>config.toml</code>. Note that while the filepath is <code>site root/content/cv.md</code>, the webpath is <code>/baseurl/cv</code>.</p>
+<pre><code>[[menu.main]]
+    name = &quot;CV&quot;
+    url = &quot;/cv/&quot;</code></pre>
+<p>This is the start of a super basic markdown CV, but there are a number of more advanced templates out there, such as <a href="https://github.com/elipapa/markdown-cv">this one</a>.</p>
+</div>
+<div id="posts" class="section level2">
+<h2>Posts</h2>
+<p>Open <code>content/post</code> and look around.</p>
+<div id="create-a-new-post" class="section level3">
+<h3>Create a new post</h3>
+<p>Using the IDE: <code>Addins &gt; New Post</code></p>
+<p>In the console, the <code>new_post()</code> function will automatically create a new post and append the date to the front of the file name that you specify as an input.</p>
+<div id="markdown-post" class="section level4">
+<h4>Markdown post</h4>
+<p>Let’s create a plain markdown post and add some content.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;../default-site/&quot;</span>)
+blogdown<span class="op">::</span><span class="kw">new_post</span>(<span class="st">&quot;newmd&quot;</span>, <span class="dt">ext =</span> <span class="st">&#39;.md&#39;</span>)</code></pre></div>
+<p>Add the following text to the new <code>.md</code> file:</p>
+<pre><code>Here is some text. Lots of text. So much text.
+
+**Gee this is fun!**
+
+Let&#39;s add a table, just for kicks.
+
+| hours of sun | happiness |
+|---|---|
+| 0 | 1 |
+| 3 | 4 |
+| 5 | 7 |
+| 7 | 10 |</code></pre>
+<p>Add the following r code chunks (removing <code>eval=FALSE</code>) and view the file in the browser:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(iris<span class="op">$</span>Sepal.Length)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(ggplot2)
+<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Sepal.Width, <span class="dt">color =</span> Species)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#3B9AB2&quot;</span>, <span class="st">&quot;#E4B80E&quot;</span>, <span class="st">&quot;#F21A00&quot;</span>))</code></pre></div>
+</div>
+<div id="rmarkdown-post" class="section level4">
+<h4>Rmarkdown post</h4>
+<p>Now let’s create a plain markdown post and see how it differs from the plain markdown file.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;../default-site/&quot;</span>)
+blogdown<span class="op">::</span><span class="kw">new_post</span>(<span class="st">&quot;newrmd&quot;</span>, <span class="dt">ext =</span> <span class="st">&#39;.Rmd&#39;</span>)</code></pre></div>
+<p>Add the same text as above to your <code>.Rmd</code> file and view it in the browser. We can see that the text looks similar in both files, but only in the R Markdown file are we able to execute code chunks.</p>
+<p>This feature makes R Mardown posts ideal for sharing code via your website.</p>
+</div>
+<div id="adding-html-files-directly" class="section level4">
+<h4>Adding HTML files directly</h4>
+<p>Rather than creating a markdown post, you may simply want to an HTML file that you’ve already created (e.g. your data science tutorial). To do this, you would simply copy the file into <code>/content/</code> or an alternative location.</p>
+<p>To compare the output of adding an HTML file versus adding an Rmd file, we’ll create a folder called “data-visualization” and copy two test files into it.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># make the directory</span>
+<span class="fu">mkdir</span> ../default-site/content/data-visualization
+
+<span class="co"># copy the HTML and .Rmd files to the directory</span>
+<span class="fu">cp</span> datavis.html ../default-site/content/data-visualization
+<span class="fu">cp</span> datavis_rmd.Rmd ../default-site/content/data-visualization</code></pre></div>
+<p>Serve the site</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;../default-site/&quot;</span>)
+blogdown<span class="op">::</span><span class="kw">serve_site</span>()</code></pre></div>
+<p>Compare the files by opening the site in the browser and navigating to:</p>
+<pre><code>/data-visualization/datavis
+/data-visualization/datavis_rmd</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="advanced-features" class="section level1">
+<h1>Advanced features</h1>
+<div id="password-protection" class="section level2">
+<h2>Password protection</h2>
+<p>Here’s a script to enable password protection on a portion of your website.</p>
+<SCRIPT>
+function passWord() {
+var testV = 1;
+var pass1 = prompt('Please Enter Your Password',' ');
+while (testV < 3) {
+if (!pass1) 
+history.go(-1);
+if (pass1.toLowerCase() == "my super secret password") {
+window.open('EasterEgg.html');
+break;
+} 
+testV+=1;
+var pass1 = 
+prompt('Access Denied - Password Incorrect, Please Try Again.','Password');
+}
+if (pass1.toLowerCase()!="password" & testV ==3) 
+history.go(-1);
+return " ";
+} 
+</SCRIPT>
+<CENTER>
+<FORM>
+<input type="button" value="Enter Protected Area" onClick="passWord()">
+</FORM>
+</CENTER>
+</div>
+<div id="shiny-apps" class="section level2">
+<h2>Shiny apps</h2>
+</div>
+</div>
+<div id="explore-the-hugo-academic-template" class="section level1">
+<h1>Explore the <code>hugo-academic</code> template</h1>
+<p>Now that we’ve gotten our bearings with the default template, let’s check out a popular template for making personal academic website created by <a href="https://github.com/gcushen/hugo-academic">George Cushen</a>.</p>
+<p>Here are a few examples of how people have modified this template:<br />
++ <a href="https://alison.rbind.io/">Alison Hill</a><br />
++ <a href="http://physics.ucr.edu/~flip/">Flip Tandeo</a><br />
++ <a href="https://amlankar.github.io/">Amlan Kar</a><br />
++ <a href="https://fischcheng.github.io/">Yu Cheng</a></p>
+<p>We’ll call our new website <code>academic-site</code> and it will be saved to the <code>rstudio-websites</code> directory.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">blogdown<span class="op">::</span><span class="kw">new_site</span>(<span class="st">&quot;../academic-site&quot;</span>, <span class="dt">theme =</span> <span class="st">&quot;gcushen/hugo-academic&quot;</span>)</code></pre></div>
+<p>Render the site, if necessary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;../academic-site/&quot;</span>)
+blogdown<span class="op">::</span><span class="kw">serve_site</span>()</code></pre></div>
+<p>Click around the rendered website. What features seem useful? What features would you want in a personal website?</p>
+<p>Now, let’s check out the file structure and take a look at what’s in the following files/directories: + <code>config.toml</code> + content</p>
+</div>
+<div id="publish-your-website" class="section level1">
+<h1>Publish your website</h1>
+<p>To create your website for publishing, execute <code>blogdown::hugo_build()</code>. This will create/update the <code>public/</code> directory in your site’s root directory.</p>
+<p>Before we build and deploy our site, we need to do a couple of things:</p>
+<p>Create a repo for your website on GitHub. Make sure that you <strong>do not</strong> initialize it with a <code>README</code> (you could, but then the following directions will not work properly).</p>
+<p>If you’re site will be hosted in a subdirectory (e.g. username.github.io/repo-name), you’ll need to set <code>relativeurls = true</code> in <code>config.toml</code>. More info on this <a href="https://github.com/rstudio/blogdown/issues/84">here</a>.</p>
+<pre><code>relativeurls = true</code></pre>
+<p>Build the site. Executing this command will update the <code>/public/</code> folder with all of your new content.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;../default-site/&quot;</span>)
+blogdown<span class="op">::</span><span class="kw">hugo_build</span>()</code></pre></div>
+<p>There are several ways to publish your website. Today, we’re going to go over how to deploy your sit using git from the command line. There are other options though, e.g. the authors of <em>blogdown: Creating Websites with R Markdown</em> recommend using Netlify to serve your site. Lots more on publishing your site <a href="https://bookdown.org/yihui/blogdown/deployment.html">in the book</a>.</p>
+<p>In the command line, navigate to the public folder in your site</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> ~/Documents/Courses/PSY607_DataScience/default-site/public</code></pre></div>
+<p>Inialize git</p>
+<p>It’s important that the public folder is not currenly living in a git repository. To check whether git is initialized type <code>git status</code>.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> init</code></pre></div>
+<p>Add remote repository</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> remote add origin https://github.com/dcosme/test-site.git</code></pre></div>
+<p>Add and commit all the files</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;initial commit&quot;</span></code></pre></div>
+<p>Push local changes to remote repository</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> push origin master</code></pre></div>
+<p>In Github, enable GitHub Pages <code>Your repo &gt; Settings &gt; GitHub Page &gt; Source = master branch &gt; Save</code></p>
+<p>If this has worked, there should now be a link highlighted in blue with the address to your website. <img src="pics/git_site.png" alt=""></p>
+<p>Go to your website and bask in the glory <f0><U+009F><U+008E><U+0089></p>
+</div>
+<div id="workflow" class="section level1">
+<h1>Workflow</h1>
+<p>Here is the <a href="https://slides.yihui.name/2017-rmarkdown-UNL-Yihui-Xie.html#30">suggested workflow</a> from the main developer of <strong>blogdown</strong>, Yihui Xie:</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Open your website project, click the “Serve Site” addin<br />
+</li>
+<li>Revise old pages/posts, or click the “New Post” addin<br />
+</li>
+<li>Write and save (take a look at the automatic preview)<br />
+</li>
+<li>Push everything to Github, or upload the public/ directory to Netlify directly</li>
+</ol>
+</blockquote>
+<p>More on the recommended workflow <a href="https://bookdown.org/yihui/blogdown/workflow.html">here</a>.</p>
+</div>
+<div id="mini-mega-ulimate-hack" class="section level1">
+<h1>Mini (mega? ulimate?) hack</h1>
+<p>You final hack in this class if to create a personal website and post it to GitHub. You can use any template you want or make it from scratch using the <strong>rmarkdown</strong> package <a href="http://nickstrayer.me/RMarkdown_Sites_tutorial/">(tutorial here)</a>.</p>
+<p>Here are the components you should include:</p>
+<ol style="list-style-type: decimal">
+<li>Homepage with a brief description about your research interests</li>
+<li>A CV (either written in markdown or simply uploaded as a PDF)</li>
+<li>Your tutorial from this class</li>
+</ol>
+<p>Change colors, futz with custom CSS, make a shiny app and link to it – feel free to add anything else you’d like!</p>
+<p>Go <f0><U+009F><U+008D><U+008C> <f0><U+009F><U+008D><U+008C></p>
+<p>Or just do the bare minimum because it’s the last week of the term <f0><U+009F><U+0098><U+0084></p>
+</div>
+<div id="helpful-resources" class="section level1">
+<h1>Helpful resources</h1>
+<ul>
+<li><a href="https://bookdown.org/yihui/blogdown/" class="uri">https://bookdown.org/yihui/blogdown/</a><br />
+</li>
+<li><a href="https://apreshill.github.io/data-vis-labs-2018/slides/06-slides_blogdown.html#1" class="uri">https://apreshill.github.io/data-vis-labs-2018/slides/06-slides_blogdown.html#1</a><br />
+</li>
+<li><a href="https://alison.rbind.io/slides/blogdown-workshop-slides" class="uri">https://alison.rbind.io/slides/blogdown-workshop-slides</a></li>
+<li><a href="https://alison.rbind.io/post/up-and-running-with-blogdown/#build-your-site-in-rstudio" class="uri">https://alison.rbind.io/post/up-and-running-with-blogdown/#build-your-site-in-rstudio</a></li>
+<li><a href="http://amber.rbind.io/blog/2016/12/19/creatingsite/" class="uri">http://amber.rbind.io/blog/2016/12/19/creatingsite/</a></li>
+<li><a href="https://gohugo.io/" class="uri">https://gohugo.io/</a><br />
+</li>
+<li><a href="http://elipapa.github.io/markdown-cv/" class="uri">http://elipapa.github.io/markdown-cv/</a></li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

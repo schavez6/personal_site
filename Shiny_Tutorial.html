@@ -358,9 +358,13 @@ div.tocify {
 
 ##you should replace this with your own info from 
 <span class="co">#rsconnect::setAccountInfo(name=&#39;schavez&#39;, token=&#39;a bunch of numbers and letters&#39;, secret=&#39;secret numbers and letters&#39;)</span>
-<span class="kw">library</span>(rsconnect)
-
-<span class="co">#Last Step: This step is for after you&#39;ve made a shiny app</span>
+<span class="kw">library</span>(rsconnect)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;rsconnect&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:shiny&#39;:
+## 
+##     serverInfo</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Last Step: This step is for after you&#39;ve made a shiny app</span>
 <span class="co">#setwd(&quot;~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/&quot;)</span>
 <span class="co">#rsconnect::deployApp()</span></code></pre></div>
 </div>
@@ -548,6 +552,7 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
 </tr>
 </tbody>
 </table>
+<p>Note: If that’s not enough for you, install the shinyWidgets package for more!</p>
 <ul>
 <li><p>To add control widgets to your app, put one of the widget functions in the sidebarPanel or mainPanel of your UI. Every widget needs these ingredients:</p>
 <ul>
@@ -555,6 +560,126 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
 <li>label (character string that the app user will see)</li>
 </ul></li>
 </ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;shinyWidgets&quot;)</span>
+<span class="kw">library</span>(shinyWidgets)
+
+<span class="kw">library</span>(shiny)
+
+<span class="co"># Define UI ----</span>
+ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+  <span class="kw">titlePanel</span>(<span class="st">&quot;A Bunch of Widgets&quot;</span>),
+  
+  <span class="kw">fluidRow</span>(
+    
+    <span class="kw">column</span>(<span class="dv">3</span>,
+           <span class="kw">h3</span>(<span class="st">&quot;Button Widgets&quot;</span>),
+           <span class="kw">actionButton</span>(<span class="st">&quot;action&quot;</span>, <span class="st">&quot;Action&quot;</span>),
+           <span class="kw">br</span>(),
+           <span class="kw">br</span>(), 
+           <span class="kw">submitButton</span>(<span class="st">&quot;Submit&quot;</span>), 
+           <span class="kw">br</span>(),
+           <span class="kw">br</span>(),
+           <span class="kw">actionBttn</span>(<span class="st">&quot;fancy action&quot;</span>, <span class="st">&quot;Danger! Don&#39;t Click Me&quot;</span>,
+                      <span class="dt">style =</span> <span class="st">&quot;jelly&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;danger&quot;</span>, <span class="dt">size =</span> <span class="st">&quot;lg&quot;</span>),
+           <span class="kw">br</span>(),
+           <span class="kw">br</span>(),
+           <span class="kw">actionGroupButtons</span>(
+             <span class="dt">inputIds =</span> <span class="kw">c</span>(<span class="st">&quot;btn1&quot;</span>, <span class="st">&quot;btn2&quot;</span>, <span class="st">&quot;btn3&quot;</span>), 
+             <span class="dt">labels =</span> <span class="kw">list</span>(<span class="st">&quot;Action 1&quot;</span>, <span class="st">&quot;Action 2&quot;</span>, tags<span class="op">$</span><span class="kw">span</span>(<span class="kw">icon</span>(<span class="st">&quot;gear&quot;</span>), <span class="st">&quot;Action 3&quot;</span>)), 
+             <span class="dt">status =</span> <span class="st">&quot;primary&quot;</span>),
+           <span class="kw">br</span>(),
+           <span class="kw">br</span>(),
+           <span class="kw">downloadBttn</span>(<span class="st">&quot;download button&quot;</span>, <span class="st">&quot;Click to Download&quot;</span>), 
+           <span class="kw">br</span>(),
+           <span class="kw">br</span>(),
+           <span class="kw">prettyRadioButtons</span>(<span class="dt">inputId =</span> <span class="st">&quot;radio4&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Click me!&quot;</span>,
+                              <span class="dt">choices =</span> <span class="kw">c</span>(<span class="st">&quot;Click me !&quot;</span>, <span class="st">&quot;Me !&quot;</span>, <span class="st">&quot;Or me !&quot;</span>),
+                              <span class="dt">outline =</span> <span class="ot">TRUE</span>,
+                              <span class="dt">plain =</span> <span class="ot">TRUE</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">&quot;thumbs-up&quot;</span>))),
+           
+    <span class="kw">column</span>(<span class="dv">3</span>,
+           <span class="kw">h3</span>(<span class="st">&quot;Checkbox Widgets&quot;</span>),
+           <span class="kw">checkboxInput</span>(<span class="st">&quot;checkbox&quot;</span>, <span class="st">&quot;Choice A&quot;</span>, <span class="dt">value =</span> <span class="ot">TRUE</span>), 
+           <span class="kw">br</span>(),
+           <span class="kw">checkboxGroupInput</span>(<span class="st">&quot;checkGroup&quot;</span>, <span class="st">&quot;Checkbox group&quot;</span>, 
+           <span class="dt">choices =</span> <span class="kw">list</span>(<span class="st">&quot;Choice 1&quot;</span> =<span class="st"> </span><span class="dv">1</span>, 
+                          <span class="st">&quot;Choice 2&quot;</span> =<span class="st"> </span><span class="dv">2</span>, 
+                          <span class="st">&quot;Choice 3&quot;</span> =<span class="st"> </span><span class="dv">3</span>), <span class="dt">selected =</span> <span class="dv">1</span>),
+           <span class="kw">br</span>(),
+           <span class="kw">prettyCheckbox</span>(<span class="dt">inputId =</span> <span class="st">&quot;checkbox2&quot;</span>,
+                          <span class="dt">label =</span> <span class="st">&quot;Click me!&quot;</span>, <span class="dt">thick =</span> <span class="ot">TRUE</span>,
+                          <span class="dt">animation =</span> <span class="st">&quot;pulse&quot;</span>, <span class="dt">status =</span> <span class="st">&quot;info&quot;</span>, 
+                          <span class="dt">fill =</span> T, <span class="dt">shape =</span> <span class="st">&quot;round&quot;</span>, <span class="dt">bigger =</span> T),
+           <span class="kw">br</span>(),
+           <span class="kw">prettyCheckboxGroup</span>(<span class="dt">inputId =</span> <span class="st">&quot;checkgroup5&quot;</span>,
+                               <span class="dt">label =</span> <span class="st">&quot;Click me!&quot;</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">&quot;check&quot;</span>),
+                               <span class="dt">choices =</span> <span class="kw">c</span>(<span class="st">&quot;Click me !&quot;</span>, <span class="st">&quot;Me !&quot;</span>, <span class="st">&quot;Or me !&quot;</span>),
+                               <span class="dt">animation =</span> <span class="st">&quot;rotate&quot;</span>, <span class="dt">status =</span> <span class="st">&quot;default&quot;</span>),
+           <span class="kw">br</span>(),
+           <span class="kw">prettyToggle</span>(<span class="dt">inputId =</span> <span class="st">&quot;toggle4&quot;</span>, <span class="dt">label_on =</span> <span class="st">&quot;Yes!&quot;</span>,
+                        <span class="dt">label_off =</span> <span class="st">&quot;No..&quot;</span>, <span class="dt">outline =</span> <span class="ot">TRUE</span>,
+                        <span class="dt">plain =</span> <span class="ot">TRUE</span>, <span class="dt">icon_on =</span> <span class="kw">icon</span>(<span class="st">&quot;thumbs-up&quot;</span>), 
+                        <span class="dt">icon_off =</span> <span class="kw">icon</span>(<span class="st">&quot;thumbs-down&quot;</span>))),
+    
+    <span class="kw">column</span>(<span class="dv">3</span>, 
+           <span class="kw">h3</span>(<span class="st">&quot;Date/Calendar Widgets&quot;</span>),
+           <span class="kw">dateInput</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;Date input&quot;</span>, 
+                     <span class="dt">value =</span> <span class="st">&quot;2014-01-01&quot;</span>), 
+           <span class="kw">br</span>(),
+           <span class="kw">br</span>(),
+           <span class="kw">dateRangeInput</span>(<span class="st">&quot;dates&quot;</span>, <span class="st">&quot;Date range&quot;</span>))
+  ),
+  
+  <span class="kw">fluidRow</span>(
+    
+    <span class="kw">column</span>(<span class="dv">3</span>,
+           <span class="kw">fileInput</span>(<span class="st">&quot;file&quot;</span>, <span class="kw">h3</span>(<span class="st">&quot;File input&quot;</span>))),
+    
+    <span class="kw">column</span>(<span class="dv">3</span>, 
+           <span class="kw">h3</span>(<span class="st">&quot;Help text&quot;</span>),
+           <span class="kw">helpText</span>(<span class="st">&quot;Note: help text isn&#39;t a true widget,&quot;</span>, 
+                    <span class="st">&quot;but it provides an easy way to add text to&quot;</span>,
+                    <span class="st">&quot;accompany other widgets.&quot;</span>)),
+    
+    <span class="kw">column</span>(<span class="dv">3</span>, 
+           <span class="kw">numericInput</span>(<span class="st">&quot;num&quot;</span>, 
+                        <span class="kw">h3</span>(<span class="st">&quot;Numeric input&quot;</span>), 
+                        <span class="dt">value =</span> <span class="dv">1</span>))   
+  ),
+  
+  <span class="kw">fluidRow</span>(
+    
+    <span class="kw">column</span>(<span class="dv">3</span>,
+           <span class="kw">radioButtons</span>(<span class="st">&quot;radio&quot;</span>, <span class="kw">h3</span>(<span class="st">&quot;Radio buttons&quot;</span>),
+                        <span class="dt">choices =</span> <span class="kw">list</span>(<span class="st">&quot;Choice 1&quot;</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Choice 2&quot;</span> =<span class="st"> </span><span class="dv">2</span>,
+                                       <span class="st">&quot;Choice 3&quot;</span> =<span class="st"> </span><span class="dv">3</span>),<span class="dt">selected =</span> <span class="dv">1</span>)),
+    
+    <span class="kw">column</span>(<span class="dv">3</span>,
+           <span class="kw">selectInput</span>(<span class="st">&quot;select&quot;</span>, <span class="kw">h3</span>(<span class="st">&quot;Select box&quot;</span>), 
+                       <span class="dt">choices =</span> <span class="kw">list</span>(<span class="st">&quot;Choice 1&quot;</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Choice 2&quot;</span> =<span class="st"> </span><span class="dv">2</span>,
+                                      <span class="st">&quot;Choice 3&quot;</span> =<span class="st"> </span><span class="dv">3</span>), <span class="dt">selected =</span> <span class="dv">1</span>)),
+    
+    <span class="kw">column</span>(<span class="dv">3</span>, 
+           <span class="kw">sliderInput</span>(<span class="st">&quot;slider1&quot;</span>, <span class="kw">h3</span>(<span class="st">&quot;Sliders&quot;</span>),
+                       <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">100</span>, <span class="dt">value =</span> <span class="dv">50</span>),
+           <span class="kw">sliderInput</span>(<span class="st">&quot;slider2&quot;</span>, <span class="st">&quot;&quot;</span>,
+                       <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">100</span>, <span class="dt">value =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">75</span>))
+    ),
+    
+    <span class="kw">column</span>(<span class="dv">3</span>, 
+           <span class="kw">textInput</span>(<span class="st">&quot;text&quot;</span>, <span class="kw">h3</span>(<span class="st">&quot;Text input&quot;</span>), 
+                     <span class="dt">value =</span> <span class="st">&quot;Enter text...&quot;</span>))   
+  )
+  
+)
+
+<span class="co"># Define server logic ----</span>
+server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+  
+}
+
+<span class="co"># Run the app ----</span>
+<span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</code></pre></div>
 </div>
 
 

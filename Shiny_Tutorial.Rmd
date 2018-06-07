@@ -16,10 +16,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Share Your Shiny App
 
-Step 1: Create an account on shinyapps.io (https://www.shinyapps.io/admin/#/signup)
+Step 1: Create an account on shinyapps.io (https://www.shinyapps.io/admin/#/signup)  
+
   - Create an account name and then hit enter/return.
   
 Step 2: Configure your account.  
+  
   - Install rsconnect package in R
   - Click the "show secret" button in step 2 of shinyapps.io
   - Click the "copy to clipboard" button in step 2 of shinyapps.io
@@ -27,6 +29,7 @@ Step 2: Configure your account.
   - Load rsconnect library
   
 Step 3: After you've created an awesome, original shiny app IN ITS OWN FOLDER
+  
   - Set your working directory to your shiny app folder
   - Deploy your shiny app with rsconnect::deployApp()
 
@@ -169,5 +172,38 @@ shinyApp(ui, server)
 
 <iframe src="https://schavez.shinyapps.io/layout/" style="border: none; width: 700px; height: 500px"></iframe>
 
+
+## Control Widgets
+
+Widgets are the interactive parts of a web application.  When we include widgets in our shiny app, the user can manipulate features of the UI.  Later, we'll learn how to make the output of our app reflect these changes dynamically.
+
+ * Shiny has some built-in widgets.  Below, we've listed their names and corresponding functions.
+
+Function | Widget
+------------- | -------------
+actionButton | Action Button
+checkboxGroupInput | A group of check boxes
+checkboxInput | A single check box
+dateInput | A calendar to aid date selection
+dateRangeInput | A pair of calendars for selecting a date range
+fileInput | A file upload control wizard
+helpText | Help text that can be added to an input form
+numericInput | A field to enter numbers
+radioButtons | A set of radio buttons
+selectInput | A box with choices to select from
+sliderInput | A slider bar
+submitButton | A submit button
+textInput | A field to enter text
+
+ * To add control widgets to your app, put one of the widget functions in the sidebarPanel or mainPanel of your UI.  Every widget needs these ingredients:
+  
+    + a name (charcter string that you call later)
+    + label (character string that the app user will see)
+ 
+```{r control widgets, eval=FALSE, include=TRUE}
+
+
+
+```
 
 

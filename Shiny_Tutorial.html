@@ -337,10 +337,23 @@ div.tocify {
 
 <div id="share-your-shiny-app" class="section level2">
 <h2>Share Your Shiny App</h2>
-<p>Step 1: Create an account on shinyapps.io (<a href="https://www.shinyapps.io/admin/#/signup" class="uri">https://www.shinyapps.io/admin/#/signup</a>) - Create an account name and then hit enter/return.</p>
-<p>Step 2: Configure your account.<br />
-- Install rsconnect package in R - Click the “show secret” button in step 2 of shinyapps.io - Click the “copy to clipboard” button in step 2 of shinyapps.io - Copy the info in the popup and paste it into R &amp; run - Load rsconnect library</p>
-<p>Step 3: After you’ve created an awesome, original shiny app IN ITS OWN FOLDER - Set your working directory to your shiny app folder - Deploy your shiny app with rsconnect::deployApp()</p>
+<p>Step 1: Create an account on shinyapps.io (<a href="https://www.shinyapps.io/admin/#/signup" class="uri">https://www.shinyapps.io/admin/#/signup</a>)</p>
+<ul>
+<li>Create an account name and then hit enter/return.</li>
+</ul>
+<p>Step 2: Configure your account.</p>
+<ul>
+<li>Install rsconnect package in R</li>
+<li>Click the “show secret” button in step 2 of shinyapps.io</li>
+<li>Click the “copy to clipboard” button in step 2 of shinyapps.io</li>
+<li>Copy the info in the popup and paste it into R &amp; run</li>
+<li>Load rsconnect library</li>
+</ul>
+<p>Step 3: After you’ve created an awesome, original shiny app IN ITS OWN FOLDER</p>
+<ul>
+<li>Set your working directory to your shiny app folder</li>
+<li>Deploy your shiny app with rsconnect::deployApp()</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&#39;rsconnect&#39;)</span>
 
 ##you should replace this with your own info from 
@@ -466,6 +479,82 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
 <span class="kw">shinyApp</span>(ui, server)</code></pre></div>
 <iframe src="https://schavez.shinyapps.io/layout/" style="border: none; width: 700px; height: 500px">
 </iframe>
+</div>
+<div id="control-widgets" class="section level2">
+<h2>Control Widgets</h2>
+<p>Widgets are the interactive parts of a web application. When we include widgets in our shiny app, the user can manipulate features of the UI. Later, we’ll learn how to make the output of our app reflect these changes dynamically.</p>
+<ul>
+<li>Shiny has some built-in widgets. Below, we’ve listed their names and corresponding functions.</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Widget</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>actionButton</td>
+<td>Action Button</td>
+</tr>
+<tr class="even">
+<td>checkboxGroupInput</td>
+<td>A group of check boxes</td>
+</tr>
+<tr class="odd">
+<td>checkboxInput</td>
+<td>A single check box</td>
+</tr>
+<tr class="even">
+<td>dateInput</td>
+<td>A calendar to aid date selection</td>
+</tr>
+<tr class="odd">
+<td>dateRangeInput</td>
+<td>A pair of calendars for selecting a date range</td>
+</tr>
+<tr class="even">
+<td>fileInput</td>
+<td>A file upload control wizard</td>
+</tr>
+<tr class="odd">
+<td>helpText</td>
+<td>Help text that can be added to an input form</td>
+</tr>
+<tr class="even">
+<td>numericInput</td>
+<td>A field to enter numbers</td>
+</tr>
+<tr class="odd">
+<td>radioButtons</td>
+<td>A set of radio buttons</td>
+</tr>
+<tr class="even">
+<td>selectInput</td>
+<td>A box with choices to select from</td>
+</tr>
+<tr class="odd">
+<td>sliderInput</td>
+<td>A slider bar</td>
+</tr>
+<tr class="even">
+<td>submitButton</td>
+<td>A submit button</td>
+</tr>
+<tr class="odd">
+<td>textInput</td>
+<td>A field to enter text</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>To add control widgets to your app, put one of the widget functions in the sidebarPanel or mainPanel of your UI. Every widget needs these ingredients:</p>
+<ul>
+<li>a name (charcter string that you call later)</li>
+<li>label (character string that the app user will see)</li>
+</ul></li>
+</ul>
 </div>
 
 

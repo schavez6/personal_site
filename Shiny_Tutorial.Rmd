@@ -267,11 +267,22 @@ ui <- fluidPage(
     
     column(3, 
            h3("Date/Calendar Widgets"),
-           dateInput("date", "Date input", 
-                     value = "2014-01-01"), 
+           airDatepickerInput(inputId = "default",
+                              label = "Choose a date:"),
            br(),
+           airDatepickerInput(inputId = "range",
+                              label = "Select range of dates:",
+                              range = TRUE, value = c(Sys.Date()-7, Sys.Date())),
            br(),
-           dateRangeInput("dates", "Date range"))
+           airDatepickerInput(inputId = "multiple times",
+                              label = "Indicate 3 times you're free to meet:",
+                              timepicker = T,
+                              placeholder = "meeting times",
+                              multiple = 3, separator = " ; ", 
+                              clearButton = TRUE),
+           airDatepickerInput(inputId = "inline",
+                              label = "Inline:",
+                              inline = TRUE))
   ),
   
   fluidRow(

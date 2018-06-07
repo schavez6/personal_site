@@ -623,11 +623,22 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
     
     <span class="kw">column</span>(<span class="dv">3</span>, 
            <span class="kw">h3</span>(<span class="st">&quot;Date/Calendar Widgets&quot;</span>),
-           <span class="kw">dateInput</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;Date input&quot;</span>, 
-                     <span class="dt">value =</span> <span class="st">&quot;2014-01-01&quot;</span>), 
+           <span class="kw">airDatepickerInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;default&quot;</span>,
+                              <span class="dt">label =</span> <span class="st">&quot;Choose a date:&quot;</span>),
            <span class="kw">br</span>(),
+           <span class="kw">airDatepickerInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;range&quot;</span>,
+                              <span class="dt">label =</span> <span class="st">&quot;Select range of dates:&quot;</span>,
+                              <span class="dt">range =</span> <span class="ot">TRUE</span>, <span class="dt">value =</span> <span class="kw">c</span>(<span class="kw">Sys.Date</span>()<span class="op">-</span><span class="dv">7</span>, <span class="kw">Sys.Date</span>())),
            <span class="kw">br</span>(),
-           <span class="kw">dateRangeInput</span>(<span class="st">&quot;dates&quot;</span>, <span class="st">&quot;Date range&quot;</span>))
+           <span class="kw">airDatepickerInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;multiple times&quot;</span>,
+                              <span class="dt">label =</span> <span class="st">&quot;Indicate 3 times you&#39;re free to meet:&quot;</span>,
+                              <span class="dt">timepicker =</span> T,
+                              <span class="dt">placeholder =</span> <span class="st">&quot;meeting times&quot;</span>,
+                              <span class="dt">multiple =</span> <span class="dv">3</span>, <span class="dt">separator =</span> <span class="st">&quot; ; &quot;</span>, 
+                              <span class="dt">clearButton =</span> <span class="ot">TRUE</span>),
+           <span class="kw">airDatepickerInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;inline&quot;</span>,
+                              <span class="dt">label =</span> <span class="st">&quot;Inline:&quot;</span>,
+                              <span class="dt">inline =</span> <span class="ot">TRUE</span>))
   ),
   
   <span class="kw">fluidRow</span>(

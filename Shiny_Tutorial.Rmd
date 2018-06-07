@@ -220,11 +220,14 @@ ui <- fluidPage(
            actionButton("action", "Action"),
            br(),
            br(), 
+           br(),
            submitButton("Submit"), 
+           br(),
            br(),
            br(),
            actionBttn("fancy action", "Danger! Don't Click Me",
                       style = "jelly", color = "danger", size = "lg"),
+           br(),
            br(),
            br(),
            actionGroupButtons(
@@ -233,7 +236,9 @@ ui <- fluidPage(
              status = "primary"),
            br(),
            br(),
+           br(),
            downloadBttn("download button", "Click to Download"), 
+           br(),
            br(),
            br(),
            prettyRadioButtons(inputId = "radio4", label = "Click me!",
@@ -245,22 +250,28 @@ ui <- fluidPage(
            h3("Checkbox Widgets"),
            checkboxInput("checkbox", "Choice A", value = TRUE), 
            br(),
+           br(),
            checkboxGroupInput("checkGroup", "Checkbox group", 
            choices = list("Choice 1" = 1, 
                           "Choice 2" = 2, 
                           "Choice 3" = 3), selected = 1),
+           br(),
            br(),
            prettyCheckbox(inputId = "checkbox2",
                           label = "Click me!", thick = TRUE,
                           animation = "pulse", status = "info", 
                           fill = T, shape = "round", bigger = T),
            br(),
+           br(),
            prettyCheckboxGroup(inputId = "checkgroup5",
                                label = "Click me!", icon = icon("check"),
                                choices = c("Click me !", "Me !", "Or me !"),
                                animation = "rotate", status = "default"),
            br(),
-           prettyToggle(inputId = "toggle4", label_on = "Yes!",
+           br(),
+           h4("pretty sweet checkbox"),
+           prettyToggle(inputId = "toggle4",
+                        label_on = "Yes!",
                         label_off = "No..", outline = TRUE,
                         plain = TRUE, icon_on = icon("thumbs-up"), 
                         icon_off = icon("thumbs-down"))),
@@ -338,4 +349,7 @@ shinyApp(ui = ui, server = server)
 
 ```
 
+<iframe src="https://schavez.shinyapps.io/widgets/" style="border: none; width: 700px; height: 500px"></iframe>
 
+
+## Displaying Reactive Output

@@ -46,6 +46,10 @@ library(rsconnect)
 
 ```
 
+<br>
+
+</br>
+
 ## The Structure of a Shiny App
 
 Shiny apps are contained in a single, integrated script called app.R.
@@ -128,6 +132,10 @@ shinyApp(ui = ui, server = server)
 
 ```
 
+<br>
+
+</br>
+
 ## Layout
 
 The layout of a shiny app is specified within the user interface with the function fluidPage() using the panel options.
@@ -172,6 +180,9 @@ shinyApp(ui, server)
 
 <iframe src="https://schavez.shinyapps.io/layout/" style="border: none; width: 700px; height: 500px"></iframe>
 
+<br>
+
+</br>
 
 ## Control Widgets
 
@@ -351,5 +362,8 @@ shinyApp(ui = ui, server = server)
 
 <iframe src="https://schavez.shinyapps.io/widgets/" style="border: none; width: 700px; height: 500px"></iframe>
 
+<br>
+
+</br>
 
 ## Displaying Reactive Output

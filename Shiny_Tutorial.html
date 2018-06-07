@@ -354,15 +354,15 @@ div.tocify {
 <li>Set your working directory to your shiny app folder</li>
 <li>Deploy your shiny app with rsconnect::deployApp()</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&#39;rsconnect&#39;)</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&#39;rsconnect&#39;</span>)
 
 ##you should replace this with your own info from 
-<span class="co">#rsconnect::setAccountInfo(name=&#39;schavez&#39;, token=&#39;a bunch of numbers and letters&#39;, secret=&#39;secret numbers and letters&#39;)</span>
+rsconnect<span class="op">::</span><span class="kw">setAccountInfo</span>(<span class="dt">name=</span><span class="st">&#39;schavez&#39;</span>, <span class="dt">token=</span><span class="st">&#39;a bunch of numbers and letters&#39;</span>, <span class="dt">secret=</span><span class="st">&#39;secret numbers and letters&#39;</span>)
 <span class="kw">library</span>(rsconnect)
 
 <span class="co">#Last Step: This step is for after you&#39;ve made a shiny app</span>
-<span class="co">#setwd(&quot;~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/&quot;)</span>
-<span class="co">#rsconnect::deployApp()</span></code></pre></div>
+<span class="kw">setwd</span>(<span class="st">&quot;~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/&quot;</span>)
+rsconnect<span class="op">::</span><span class="kw">deployApp</span>()</code></pre></div>
 <p><br></p>
 <p></br></p>
 </div>
@@ -712,10 +712,10 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
 <div id="displaying-reactive-output" class="section level2">
 <h2>Displaying Reactive Output</h2>
 <p>Reactive output displays automatically when a user interacts with your shiny app using one (or more) of the control widgets we just made.</p>
-<ul>
-<li>We can make reactive output in two steps:</li>
+<p>We can make reactive output in two steps:</p>
+<ol style="list-style-type: decimal">
 <li>Add an R object in your UI function. Shiny has built-in functions to turn your R objects into UI-compatible output. Here’s a table with those built-in output functions and what they do.</li>
-</ul>
+</ol>
 <table>
 <thead>
 <tr class="header">
@@ -759,19 +759,104 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
 </tbody>
 </table>
 <ul>
-<li>Tell R how to build the object in your server function</li>
+<li><p>Put your output function in the your UI, in either the sidebarPanel or mainPanel.</p></li>
+<li><p>Your output function will take a character string, in quotes, as an argument. This character string corresponds to the name of a control widget in your UI.</p></li>
 </ul>
-<p><br></p>
-<p></br></p>
-</div>
-<div id="data-scripts-packages-in-shiny" class="section level2">
-<h2>Data, Scripts, &amp; Packages in Shiny</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Here&#39;s an example based on one of the widgets we made earlier.</span>
+
+ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+  <span class="kw">titlePanel</span>(<span class="st">&quot;The Presidential Launch Codes&quot;</span>),
+  
+  <span class="kw">sidebarLayout</span>(
+    <span class="kw">sidebarPanel</span>(
+      <span class="kw">helpText</span>(<span class="st">&quot;Be careful.  Interacting with this shiny app could cause the world to implode.&quot;</span>),
+      
+      <span class="kw">actionBttn</span>(<span class="st">&quot;fancy_action&quot;</span>, <span class="st">&quot;Danger! Don&#39;t Click Me&quot;</span>,
+                      <span class="dt">style =</span> <span class="st">&quot;jelly&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;danger&quot;</span>, <span class="dt">size =</span> <span class="st">&quot;lg&quot;</span>)
+    ),
+    
+    <span class="kw">mainPanel</span>(
+      <span class="kw">imageOutput</span>(<span class="st">&quot;res_fancy_action&quot;</span>)
+    )
+  )
+)</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Tell R how to build the object in your server function</li>
+</ol>
+<ul>
+<li><p>The server function makes on object called ‘output’ that contains a list of all the things we need to make a shiny app.</p></li>
+<li><p>Each output object that you make from step 1 needs to have it’s own entry/element in the server function.</p></li>
+<li><p>You need to name this element the same thing as you named your control widget.</p></li>
+<li><p>Finally, we need to call a widget value to make the output display reactively when a user manipulates the widget. (Hint: Sometimes (especially when you use button widgets), you need to add an observeEvent() command, like the one below.)</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Here&#39;s an example server function to go with the ui function above.</span>
+
+server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+  <span class="kw">observeEvent</span>(input<span class="op">$</span>fancy_action, {
+  
+  output<span class="op">$</span>res_fancy_action &lt;-<span class="st"> </span><span class="kw">renderImage</span>({ 
+    endworld &lt;-<span class="st"> </span><span class="kw">normalizePath</span>(<span class="kw">file.path</span>(<span class="st">&#39;./pics&#39;</span>,
+                              <span class="kw">paste</span>(<span class="st">&#39;endworld&#39;</span>, <span class="st">&#39;.gif&#39;</span>, <span class="dt">sep=</span><span class="st">&#39;&#39;</span>)))
+
+    <span class="co"># Return a list containing the filename</span>
+    <span class="kw">list</span>(<span class="dt">src =</span> endworld)
+  }, <span class="dt">deleteFile =</span> F)
+  })
+}</code></pre></div>
+<ul>
+<li><p>Each output element should contain a render function.</p></li>
+<li><p>Each render function will only takes only one argument, which always take the form of an R expression in culy braces like these {}.</p></li>
+<li><p>Here’s a table describing the render functions that are built into shiny.</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Render Function</th>
+<th>Object It Makes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>renderDataTable</td>
+<td>DataTable</td>
+</tr>
+<tr class="even">
+<td>renderImage</td>
+<td>images (saved as a link to a source file)</td>
+</tr>
+<tr class="odd">
+<td>renderPlot</td>
+<td>plots</td>
+</tr>
+<tr class="even">
+<td>renderPrint</td>
+<td>any printed output</td>
+</tr>
+<tr class="odd">
+<td>renderTable</td>
+<td>data frame, matrix, other table like structures</td>
+</tr>
+<tr class="even">
+<td>renderText</td>
+<td>character strings</td>
+</tr>
+<tr class="odd">
+<td>renderUI</td>
+<td>a Shiny tag object or HTML</td>
+</tr>
+</tbody>
+</table>
+<p>We’ve finished building our shiny app. To launch it in Rstudio, just run the the UI and server code chunks above and then run:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</code></pre></div>
+<p>And here it is, in all it’s glory.</p>
+<iframe src="https://schavez.shinyapps.io/world/" style="border: none; width: 800px; height: 500px">
+</iframe>
 <p><br></p>
 <p></br></p>
 </div>
 <div id="more-resources" class="section level2">
 <h2>More Resources</h2>
-<p><a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/" class="uri">https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/</a> </br> <a href="https://github.com/grabear/awesome-rshiny" class="uri">https://github.com/grabear/awesome-rshiny</a> </br> <a href="https://blog.rstudio.com/categories/shiny/" class="uri">https://blog.rstudio.com/categories/shiny/</a></p>
+<p>Begin with Lesson 5 to pick up where we left off. This site will teach you how to load data into shiny and use r scripts and packages within shiny. <br></br> <a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/" class="uri">https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/</a> </br> <a href="https://github.com/grabear/awesome-rshiny" class="uri">https://github.com/grabear/awesome-rshiny</a> </br> <a href="https://blog.rstudio.com/categories/shiny/" class="uri">https://blog.rstudio.com/categories/shiny/</a></p>
 </div>
 
 

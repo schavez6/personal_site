@@ -33,16 +33,16 @@ Step 3: After you've created an awesome, original shiny app IN ITS OWN FOLDER
   - Set your working directory to your shiny app folder
   - Deploy your shiny app with rsconnect::deployApp()
 
-```{r creating sharable shiny apps}
-#install.packages('rsconnect')
+```{r creating sharable shiny apps, eval=FALSE, include=TRUE}
+install.packages('rsconnect')
 
 ##you should replace this with your own info from 
-#rsconnect::setAccountInfo(name='schavez', token='a bunch of numbers and letters', secret='secret numbers and letters')
+rsconnect::setAccountInfo(name='schavez', token='a bunch of numbers and letters', secret='secret numbers and letters')
 library(rsconnect)
 
 #Last Step: This step is for after you've made a shiny app
-#setwd("~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/")
-#rsconnect::deployApp()
+setwd("~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/")
+rsconnect::deployApp()
 
 ```
 
@@ -370,8 +370,9 @@ shinyApp(ui = ui, server = server)
 
 Reactive output displays automatically when a user interacts with your shiny app using one (or more) of the control widgets we just made.
 
-* We can make reactive output in two steps:
-  + Add an R object in your UI function. Shiny has built-in functions to turn your R objects into UI-compatible output.  Here's a table with those built-in output functions and what they do.
+We can make reactive output in two steps:
+
+1. Add an R object in your UI function. Shiny has built-in functions to turn your R objects into UI-compatible output.  Here's a table with those built-in output functions and what they do.
   
 Output Function | Object It Makes
 ------------- | -------------
@@ -384,13 +385,89 @@ textOutput | text
 uiOutput | raw HTML
 verbatimTextOutput | text
   
-  + Tell R how to build the object in your server function
+  + Put your output function in the your UI, in either the sidebarPanel or mainPanel.
+  
+  + Your output function will take a character string, in quotes, as an argument.  This character string corresponds to the name of a control widget in your UI.  
+  
+```{r,  eval = F, include = T}
+  
+# Here's an example based on one of the widgets we made earlier.
 
-<br>
+ui <- fluidPage(
+  titlePanel("The Presidential Launch Codes"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      helpText("Be careful.  Interacting with this shiny app could cause the world to implode."),
+      
+      actionBttn("fancy_action", "Danger! Don't Click Me",
+                      style = "jelly", color = "danger", size = "lg")
+    ),
+    
+    mainPanel(
+      imageOutput("res_fancy_action")
+    )
+  )
+)
+  
+```
+  
+2. Tell R how to build the object in your server function
 
-</br>
+  + The server function makes on object called 'output' that contains a list of all the things we need to make a shiny app. 
+  
+  + Each output object that you make from step 1 needs to have it's own entry/element in the server function.
+  
+  + You need to name this element the same thing as you named your control widget.
+  
+  + Finally, we need to call a widget value to make the output display reactively when a user manipulates the widget. (Hint: Sometimes (especially when you use button widgets), you need to add an observeEvent() command, like the one below.)
+  
+```{r,  eval = F, include = T}
+  
+# Here's an example server function to go with the ui function above.
 
-## Data, Scripts, & Packages in Shiny
+server <- function(input, output) {
+  observeEvent(input$fancy_action, {
+  
+  output$res_fancy_action <- renderImage({ 
+    endworld <- normalizePath(file.path('./pics',
+                              paste('endworld', '.gif', sep='')))
+
+    # Return a list containing the filename
+    list(src = endworld)
+  }, deleteFile = F)
+  })
+}
+  
+```
+
+  + Each output element should contain a render function.  
+  
+  + Each render function will only takes only one argument, which always take the form of an R expression in culy braces like these {}.
+  
+  + Here's a table describing the render functions that are built into shiny.  
+  
+Render Function | Object It Makes
+------------- | -------------
+renderDataTable | DataTable
+renderImage | images (saved as a link to a source file)
+renderPlot | plots
+renderPrint | any printed output
+renderTable | data frame, matrix, other table like structures
+renderText | character strings
+renderUI | a Shiny tag object or HTML
+
+We've finished building our shiny app.  To launch it in Rstudio, just run the the UI and server code chunks above and then run:
+
+```{r, eval = FALSE, include = T}
+
+shinyApp(ui = ui, server = server)
+
+```
+
+And here it is, in all it's glory.
+
+<iframe src="https://schavez.shinyapps.io/world/" style="border: none; width: 800px; height: 500px"></iframe>
 
 <br>
 
@@ -398,6 +475,7 @@ verbatimTextOutput | text
 
 ## More Resources
 
+Begin with Lesson 5 to pick up where we left off.  This site will teach you how to load data into shiny and use r scripts and packages within shiny. <br></br>
 https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/ </br>
 https://github.com/grabear/awesome-rshiny </br>
 https://blog.rstudio.com/categories/shiny/

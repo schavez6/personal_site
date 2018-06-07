@@ -711,6 +711,56 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
 </div>
 <div id="displaying-reactive-output" class="section level2">
 <h2>Displaying Reactive Output</h2>
+<p>Reactive output displays automatically when a user interacts with your shiny app using one (or more) of the control widgets we just made.</p>
+<ul>
+<li>We can make reactive output in two steps:</li>
+<li>Add an R object in your UI function. Shiny has built-in functions to turn your R objects into UI-compatible output. Here’s a table with those built-in output functions and what they do.</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Output Function</th>
+<th>Object It Makes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dataTableOutput</td>
+<td>DataTable</td>
+</tr>
+<tr class="even">
+<td>htmlOutput</td>
+<td>raw HTML</td>
+</tr>
+<tr class="odd">
+<td>imageOutput</td>
+<td>image</td>
+</tr>
+<tr class="even">
+<td>plotOutput</td>
+<td>plot</td>
+</tr>
+<tr class="odd">
+<td>tableOutput</td>
+<td>table</td>
+</tr>
+<tr class="even">
+<td>textOutput</td>
+<td>text</td>
+</tr>
+<tr class="odd">
+<td>uiOutput</td>
+<td>raw HTML</td>
+</tr>
+<tr class="even">
+<td>verbatimTextOutput</td>
+<td>text</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Tell R how to build the object in your server function</li>
+</ul>
 <p><br></p>
 <p></br></p>
 </div>

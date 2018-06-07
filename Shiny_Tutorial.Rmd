@@ -368,6 +368,24 @@ shinyApp(ui = ui, server = server)
 
 ## Displaying Reactive Output
 
+Reactive output displays automatically when a user interacts with your shiny app using one (or more) of the control widgets we just made.
+
+* We can make reactive output in two steps:
+  + Add an R object in your UI function. Shiny has built-in functions to turn your R objects into UI-compatible output.  Here's a table with those built-in output functions and what they do.
+  
+Output Function | Object It Makes
+------------- | -------------
+dataTableOutput | DataTable
+htmlOutput | raw HTML
+imageOutput | image
+plotOutput | plot
+tableOutput | table
+textOutput | text
+uiOutput | raw HTML
+verbatimTextOutput | text
+  
+  + Tell R how to build the object in your server function
+
 <br>
 
 </br>

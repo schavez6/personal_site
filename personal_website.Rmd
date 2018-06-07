@@ -368,7 +368,7 @@ return " ";
 </FORM>
 </CENTER>
 
-## Shiny apps
+## [Shiny apps](Shiny_Tutorial.html)
 
 # Explore the `hugo-academic` template
 Now that we've gotten our bearings with the default template, let's check out a popular template for making personal academic website created by [George Cushen](https://github.com/gcushen/hugo-academic). 

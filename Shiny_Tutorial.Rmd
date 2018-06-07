@@ -367,3 +367,19 @@ shinyApp(ui = ui, server = server)
 </br>
 
 ## Displaying Reactive Output
+
+<br>
+
+</br>
+
+## Data, Scripts, & Packages in Shiny
+
+<br>
+
+</br>
+
+## More Resources
+
+https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/ </br>
+https://github.com/grabear/awesome-rshiny </br>
+https://blog.rstudio.com/categories/shiny/

@@ -10,5 +10,5 @@ title: "Presentations from our Data Science Course"
 __You get the idea...__
 
 
-## [Personal Website Tutorial](personal_website.html)
+## [Websites in RStudio](personal_website.html)
 ## [Shiny App Tutorial](Shiny_Tutorial.html)

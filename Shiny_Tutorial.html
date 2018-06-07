@@ -335,37 +335,7 @@ div.tocify {
 </div>
 
 
-<div id="share-your-shiny-app" class="section level2">
-<h2>Share Your Shiny App</h2>
-<p>Step 1: Create an account on shinyapps.io (<a href="https://www.shinyapps.io/admin/#/signup" class="uri">https://www.shinyapps.io/admin/#/signup</a>)</p>
-<ul>
-<li>Create an account name and then hit enter/return.</li>
-</ul>
-<p>Step 2: Configure your account.</p>
-<ul>
-<li>Install rsconnect package in R</li>
-<li>Click the “show secret” button in step 2 of shinyapps.io</li>
-<li>Click the “copy to clipboard” button in step 2 of shinyapps.io</li>
-<li>Copy the info in the popup and paste it into R &amp; run</li>
-<li>Load rsconnect library</li>
-</ul>
-<p>Step 3: After you’ve created an awesome, original shiny app IN ITS OWN FOLDER</p>
-<ul>
-<li>Set your working directory to your shiny app folder</li>
-<li>Deploy your shiny app with rsconnect::deployApp()</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&#39;rsconnect&#39;</span>)
-
-##you should replace this with your own info from 
-rsconnect<span class="op">::</span><span class="kw">setAccountInfo</span>(<span class="dt">name=</span><span class="st">&#39;schavez&#39;</span>, <span class="dt">token=</span><span class="st">&#39;a bunch of numbers and letters&#39;</span>, <span class="dt">secret=</span><span class="st">&#39;secret numbers and letters&#39;</span>)
-<span class="kw">library</span>(rsconnect)
-
-<span class="co">#Last Step: This step is for after you&#39;ve made a shiny app</span>
-<span class="kw">setwd</span>(<span class="st">&quot;~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/&quot;</span>)
-rsconnect<span class="op">::</span><span class="kw">deployApp</span>()</code></pre></div>
-<p><br></p>
 <p></br></p>
-</div>
 <div id="the-structure-of-a-shiny-app" class="section level2">
 <h2>The Structure of a Shiny App</h2>
 <p>Shiny apps are contained in a single, integrated script called app.R.</p>
@@ -461,14 +431,14 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
   <span class="kw">titlePanel</span>(<span class="kw">em</span>(<span class="st">&quot;my italicized title&quot;</span>, <span class="dt">align =</span> <span class="st">&quot;center&quot;</span>)),
   
   <span class="kw">sidebarLayout</span>(<span class="dt">position =</span> <span class="st">&quot;left&quot;</span>,
-                <span class="kw">sidebarPanel</span>(<span class="kw">strong</span>(<span class="st">&quot;my bold sidebar&quot;</span>),
+                <span class="kw">sidebarPanel</span>(<span class="kw">strong</span>(<span class="st">&quot;my bold sidebar</span><span class="ch">\n</span><span class="st">and a picture</span><span class="ch">\n</span><span class="st">of a shiny penny&quot;</span>),
                              <span class="kw">img</span>(<span class="dt">src =</span> <span class="st">&quot;https://www.thefarmersbank.net/wp-content/uploads/2018/04/2005-Penny-Uncirculated-Obverse.png&quot;</span>, <span class="dt">height =</span> <span class="dv">100</span>, <span class="dt">width =</span> <span class="dv">100</span>)),
                 <span class="kw">mainPanel</span>(
                   <span class="kw">h1</span>(<span class="st">&quot;most important output&quot;</span>),
                   <span class="kw">br</span>(),
                   <span class="kw">p</span>(<span class="st">&quot;this is a paragraph that says nothing in particular.  it&#39;s just a bunch of sentences to illustrate a point about separating text.  watch, we&#39;re going to copy and paste it below as another paragraph.&quot;</span>),
                   <span class="kw">p</span>(<span class="st">&quot;this is a paragraph that says nothing in particular.  it&#39;s just a bunch of sentences to illustrate a point about separating text.&quot;</span>),
-                  <span class="kw">h2</span>(<span class="st">&quot;less important blue output&quot;</span>),
+                  <span class="kw">h2</span>(<span class="st">&quot;less important output&quot;</span>),
                   <span class="kw">h3</span>(<span class="kw">div</span>(<span class="st">&quot;here&#39;s smaller text in blue&quot;</span>, <span class="dt">style =</span> <span class="st">&quot;color:blue&quot;</span>)),
                   <span class="kw">h4</span>(<span class="kw">p</span>(<span class="st">&quot;here&#39;s a tiny text paragraph with just&quot;</span>, <span class="kw">span</span>(<span class="st">&quot;a few orange words,&quot;</span>, <span class="dt">style =</span> <span class="st">&quot;color:orange&quot;</span>), <span class="st">&quot;if you&#39;re into that.&quot;</span>))
                 )
@@ -848,6 +818,37 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
 </table>
 <p>We’ve finished building our shiny app. To launch it in Rstudio, just run the the UI and server code chunks above and then run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</code></pre></div>
+</div>
+<div id="share-your-shiny-app" class="section level2">
+<h2>Share Your Shiny App</h2>
+<p>Step 1: Create an account on shinyapps.io (<a href="https://www.shinyapps.io/admin/#/signup" class="uri">https://www.shinyapps.io/admin/#/signup</a>)</p>
+<ul>
+<li>Create an account name and then hit enter/return.</li>
+</ul>
+<p>Step 2: Configure your account.</p>
+<ul>
+<li>Install rsconnect package in R</li>
+<li>Click the “show secret” button in step 2 of shinyapps.io</li>
+<li>Click the “copy to clipboard” button in step 2 of shinyapps.io</li>
+<li>Copy the info in the popup and paste it into R &amp; run</li>
+<li>Load rsconnect library</li>
+</ul>
+<p>Step 3: After you’ve created an awesome, original shiny app IN ITS OWN FOLDER</p>
+<ul>
+<li>Set your working directory to your shiny app folder</li>
+<li>Deploy your shiny app with rsconnect::deployApp()</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&#39;rsconnect&#39;</span>)
+
+##you should replace this with your own info from 
+rsconnect<span class="op">::</span><span class="kw">setAccountInfo</span>(<span class="dt">name=</span><span class="st">&#39;schavez&#39;</span>, <span class="dt">token=</span><span class="st">&#39;a bunch of numbers and letters&#39;</span>, <span class="dt">secret=</span><span class="st">&#39;secret numbers and letters&#39;</span>)
+<span class="kw">library</span>(rsconnect)
+
+<span class="co">#Last Step: This step is for after you&#39;ve made a shiny app</span>
+<span class="kw">setwd</span>(<span class="st">&quot;~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/&quot;</span>)
+rsconnect<span class="op">::</span><span class="kw">deployApp</span>()</code></pre></div>
+<p>When deployApp() has finished running, a shinyapps.io website should pop up with your shiny app. Now, we can just use an inline frame to embed our shiny app in our new website, like this.</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;iframe</span><span class="ot"> src=</span><span class="st">&quot;https://schavez.shinyapps.io/world/&quot;</span><span class="ot"> style=</span><span class="st">&quot;border: none; width: 800px; height: 500px&quot;</span><span class="kw">&gt;&lt;/iframe&gt;</span></code></pre></div>
 <p>And here it is, in all it’s glory.</p>
 <iframe src="https://schavez.shinyapps.io/world/" style="border: none; width: 800px; height: 500px">
 </iframe>

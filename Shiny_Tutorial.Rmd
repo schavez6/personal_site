@@ -13,41 +13,6 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-## Share Your Shiny App
-
-Step 1: Create an account on shinyapps.io (https://www.shinyapps.io/admin/#/signup)  
-
-  - Create an account name and then hit enter/return.
-  
-Step 2: Configure your account.  
-  
-  - Install rsconnect package in R
-  - Click the "show secret" button in step 2 of shinyapps.io
-  - Click the "copy to clipboard" button in step 2 of shinyapps.io
-  - Copy the info in the popup and paste it into R & run
-  - Load rsconnect library
-  
-Step 3: After you've created an awesome, original shiny app IN ITS OWN FOLDER
-  
-  - Set your working directory to your shiny app folder
-  - Deploy your shiny app with rsconnect::deployApp()
-
-```{r creating sharable shiny apps, eval=FALSE, include=TRUE}
-install.packages('rsconnect')
-
-##you should replace this with your own info from 
-rsconnect::setAccountInfo(name='schavez', token='a bunch of numbers and letters', secret='secret numbers and letters')
-library(rsconnect)
-
-#Last Step: This step is for after you've made a shiny app
-setwd("~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/")
-rsconnect::deployApp()
-
-```
-
-<br>
-
 </br>
 
 ## The Structure of a Shiny App
@@ -155,14 +120,14 @@ ui <- fluidPage(
   titlePanel(em("my italicized title", align = "center")),
   
   sidebarLayout(position = "left",
-                sidebarPanel(strong("my bold sidebar"),
+                sidebarPanel(strong("my bold sidebar\nand a picture\nof a shiny penny"),
                              img(src = "https://www.thefarmersbank.net/wp-content/uploads/2018/04/2005-Penny-Uncirculated-Obverse.png", height = 100, width = 100)),
                 mainPanel(
                   h1("most important output"),
                   br(),
                   p("this is a paragraph that says nothing in particular.  it's just a bunch of sentences to illustrate a point about separating text.  watch, we're going to copy and paste it below as another paragraph."),
                   p("this is a paragraph that says nothing in particular.  it's just a bunch of sentences to illustrate a point about separating text."),
-                  h2("less important blue output"),
+                  h2("less important output"),
                   h3(div("here's smaller text in blue", style = "color:blue")),
                   h4(p("here's a tiny text paragraph with just", span("a few orange words,", style = "color:orange"), "if you're into that."))
                 )
@@ -462,6 +427,45 @@ We've finished building our shiny app.  To launch it in Rstudio, just run the th
 ```{r, eval = FALSE, include = T}
 
 shinyApp(ui = ui, server = server)
+
+```
+
+## Share Your Shiny App
+
+Step 1: Create an account on shinyapps.io (https://www.shinyapps.io/admin/#/signup)  
+
+  - Create an account name and then hit enter/return.
+  
+Step 2: Configure your account.  
+  
+  - Install rsconnect package in R
+  - Click the "show secret" button in step 2 of shinyapps.io
+  - Click the "copy to clipboard" button in step 2 of shinyapps.io
+  - Copy the info in the popup and paste it into R & run
+  - Load rsconnect library
+  
+Step 3: After you've created an awesome, original shiny app IN ITS OWN FOLDER
+  
+  - Set your working directory to your shiny app folder
+  - Deploy your shiny app with rsconnect::deployApp()
+
+```{r creating sharable shiny apps, eval=FALSE, include=TRUE}
+install.packages('rsconnect')
+
+##you should replace this with your own info from 
+rsconnect::setAccountInfo(name='schavez', token='a bunch of numbers and letters', secret='secret numbers and letters')
+library(rsconnect)
+
+#Last Step: This step is for after you've made a shiny app
+setwd("~/UO/Spring 2018/Data Science/personal_site/shinythings/shinytest/")
+rsconnect::deployApp()
+
+```
+
+When deployApp() has finished running, a shinyapps.io website should pop up with your shiny app.  Now, we can just use an inline frame to embed our shiny app in our new website, like this.
+
+```{html embed shiny app, echo=T, eval=F}
+<iframe src="https://schavez.shinyapps.io/world/" style="border: none; width: 800px; height: 500px"></iframe>
 
 ```
 
